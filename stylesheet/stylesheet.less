@@ -578,11 +578,7 @@ select { background: none; background-color: @gray_4; max-width: 100%; height: 3
  * Labels
  * ====================================================== */
 
-@labels_weight: bold;
-@labels_size: 1rem;
-@labels_case: none;
-
-.ui-label { margin: 0 5px 0 0; font-weight: @labels_weight; font-size: @labels_size; text-transform: @labels_case; display: inline; position: relative; top: -1px; }
+.ui-label { margin: 0 7px 0 0; border-width: 1px; border-style: solid; border-radius: 3px; padding: 0 7px 1px; font-weight: bold; font-size: 1rem; display: inline; }
 
 .label-row { height: 20px; margin: 10px 0; line-height: 20px !important; clear: left; }
 .label-row * { float: left; }
@@ -1177,7 +1173,7 @@ input.ui-error { background-color: @container_background_color_1; padding: 2px; 
 .ui-widget-overlay { background: fade(@blue_2, 70%); opacity: 1; }
 
 .ui-dialog { height: auto !important; margin-top: 0 !important; position: fixed !important; .box-sizing(border-box) !important;.hsla-bgcolor-safe(@container_outer_border_color, .5); }
-.ui-dialog .ui-dialog-titlebar { background-color: @title_bar_background_color; min-height: 44px; border-bottom: 4px solid @electric_blue; padding: 0 60px 0 20px; position: relative; }
+.ui-dialog .ui-dialog-titlebar { background-color: @title_bar_background_color; min-height: 43px; border-bottom: 3px solid @electric_blue; padding: 0 60px 0 20px; position: relative; }
 .ui-dialog .ui-dialog-titlebar-close { right: 20px; }
 .ui-dialog .ui-dialog-titlebar-close:hover span,
 .ui-dialog .ui-dialog-titlebar-close:focus span { background-image:url('@{images_path}/ui-icons.png'); background-position: -20px, 0; }
@@ -1258,7 +1254,7 @@ input.ui-error { background-color: @container_background_color_1; padding: 2px; 
 .dark .ui-pagination li.state-selected > a { background-color: @gray_2; color: @blue_3; }
 .dark .ui-pagination li.state-disabled > a:hover { background-color: @blue_4; }
 
-.ui-micro-pagination { margin-left: 6px; white-space: nowrap; overflow: hidden; display: none; }
+.ui-micro-pagination { margin-left: 8px; white-space: nowrap; overflow: hidden; display: none; }
 .ui-micro-pagination ul li { list-style: none; float: left; }
 .ui-micro-pagination ul li + li { margin-left: 3px; }
 .ui-micro-pagination ul li > a { background-color: transparent; border: 1px solid darken(@container_inner_border_color, 20%); padding: 3px 4px 4px; font-size: 1rem; line-height: 1; text-decoration: none; color: @pagination_text_color; display: block; .transition(none); }
@@ -1357,12 +1353,9 @@ table.list .last-edited { color: @timestamp_color; }
 .dark table.list > tbody > tr.state-selected { background-color: @blue_2; color: @gray_1; }
 .dark table.list > tbody > tr.state-hover { background-color: @blue_2; color: @gray_1; }
 
-@media only screen and (min-width: @screen_sm) {
+@media only screen and (min-width: @screen_md) {
   table.list th.icon,
   table.list td.icon { width: 55px; }
-}
-
-@media only screen and (min-width: @screen_md) {
   table.list .checkbox { width: 45px; }
 }
 
@@ -1745,7 +1738,7 @@ table.list .last-edited { color: @timestamp_color; }
 .threads .new .new-icon { display: inline-block; }
 
 .threads .control-icons > span[class$="icon"] { margin-right: 8px; }
-.threads span.labels { margin-bottom: 3px; display: block; }
+.threads span.labels { margin-bottom: 7px; display: block; }
 
 .dark .threads td.icon { background-color: @blue_4; }
 .dark .threads .new td.icon { background-color: @electric_blue; }
@@ -1761,10 +1754,9 @@ table.list .last-edited { color: @timestamp_color; }
 @media only screen and (min-width: @screen_sm) {
   .threads .checkbox { display: table-cell; }
   .threads .main { padding-left: 0 !important; }
-  .threads .avatar { display: table-cell; }
 }
 
-@media only screen and (max-width: 839px) {
+@media only screen and (max-width: 739px) {
   .threads .break { font: 0/0 a; display: block; }
 }
 
@@ -1772,6 +1764,7 @@ table.list .last-edited { color: @timestamp_color; }
   .threads table.list > tbody > tr:not(.spacer) > td:not(.checkbox) { padding: 15px 10px; }
 
   .threads .replies-views { display: table-cell; }
+  .threads .avatar { display: table-cell; }
   .threads .latest { min-width: 220px; padding-right: 30px !important; }
 }
 
@@ -1786,8 +1779,7 @@ table.list .last-edited { color: @timestamp_color; }
 .posts table.list > tbody > tr { border-width: 1px; }
 .posts table.list > tbody > tr > td { border: 0 !important; padding: 0 !important; }
 
-.posts span.labels { background-color: @container_background_color_1; margin-bottom: 5px; border: 1px solid @container_inner_border_color; padding: 0 15px 4px 15px; display: block; }
-.posts span.labels .ui-label { padding: 5px 0 0 5px; display: inline-block; }
+.posts span.labels { background-color: @container_background_color_1; margin-bottom: 5px; border: 1px solid @container_inner_border_color; padding: 5px 15px 9px; display: block; }
 .posts .poll { background-color: @container_background_color_1; margin-bottom: 5px; border: 1px solid @container_inner_border_color; padding: 12px 15px; }
 
 .dark .posts span.labels { background-color: @blue_3; border-color: @blue_4; }
@@ -2009,7 +2001,7 @@ span.pd-post-reactions-dialog-item .fa-laugh {
 .conversations .new td.icon { background-color: @electric_blue; }
 .conversations .new .new-icon { display: inline-block; }
 
-.conversations span.labels { margin-bottom: 3px; display: block; }
+.conversations span.labels { margin-bottom: 7px; display: block; }
 
 .dark .conversations td.icon { background-color: @blue_4; }
 .dark .conversations .new td.icon { background-color: @electric_blue; }
@@ -2023,10 +2015,9 @@ span.pd-post-reactions-dialog-item .fa-laugh {
 @media only screen and (min-width: @screen_sm) {
   .conversations .checkbox { display: table-cell; }
   .conversations .main { padding-left: 0 !important; }
-  .conversations .avatar { display: table-cell; }
 }
 
-@media only screen and (max-width: 839px) {
+@media only screen and (max-width: 739px) {
   .conversations .break { font: 0/0 a; display: block; }
 }
 
@@ -2034,6 +2025,7 @@ span.pd-post-reactions-dialog-item .fa-laugh {
   .conversations table.list > tbody > tr:not(.spacer) > td:not(.checkbox) { padding: 15px 10px; }
 
   .conversations .replies { display: table-cell; }
+  .conversations .avatar { display: table-cell; }
   .conversations .latest { min-width: 220px; padding-right: 30px !important; }
 }
 
@@ -2048,7 +2040,7 @@ span.pd-post-reactions-dialog-item .fa-laugh {
 .messages table.list > tbody > tr { border-width: 1px; }
 .messages table.list > tbody > tr > td { border: 0 !important; padding: 0 !important; }
 
-.messages .conversation-labels { margin-right: 5px; margin-top: 5px; float: right; }
+.messages .conversation-labels { margin-right: 8px; margin-top: 7px; float: right; display: none; }
 .messages .participants { background-color: @container_background_color_1; margin-bottom: 5px; border: 1px solid @container_outer_border_color; padding: 8px 20px; }
 
 .dark .messages .participants { background-color: @blue_3; border-color: @blue_4; }
@@ -2108,6 +2100,7 @@ span.pd-post-reactions-dialog-item .fa-laugh {
 }
 
 @media only screen and (min-width: @screen_md) {
+  .messages .conversation-labels { margin-right: 23px; display: block; }
   .messages .participants { padding-left: 30px; padding-right: 30px; }
 
   .messages .item .left-panel { width: 230px; height: 1px; border-width: 0 1px 0 0; vertical-align: top; display: table-cell; }
