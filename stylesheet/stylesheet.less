@@ -1258,19 +1258,17 @@ input.ui-error { background-color: @container_background_color_1; padding: 2px; 
 .dark .ui-pagination li.state-selected > a { background-color: @gray_2; color: @blue_3; }
 .dark .ui-pagination li.state-disabled > a:hover { background-color: @blue_4; }
 
-.ui-micro-pagination { margin-top: 6px; font-size: 1.1rem; overflow: hidden; display: none; }
-.ui-micro-pagination ul,
-.ui-micro-pagination ul li div { display: inline; }
-.ui-micro-pagination ul li { list-style: none; display: inline; }
+.ui-micro-pagination { margin-left: 6px; white-space: nowrap; overflow: hidden; display: none; }
+.ui-micro-pagination ul li { list-style: none; float: left; }
 .ui-micro-pagination ul li + li { margin-left: 3px; }
-.ui-micro-pagination ul li > a { background-color: transparent; border: 1px solid darken(@container_inner_border_color, 20%); padding: 1px 4px 2px; text-decoration: none; color: @pagination_text_color; display: inline-block; .transition(none); }
+.ui-micro-pagination ul li > a { background-color: transparent; border: 1px solid darken(@container_inner_border_color, 20%); padding: 3px 4px 4px; font-size: 1rem; line-height: 1; text-decoration: none; color: @pagination_text_color; display: block; .transition(none); }
 .ui-micro-pagination ul li > a:hover { background-color: @pagination_hover_color; color: @pagination_text_color; }
 
 .dark .ui-micro-pagination ul li > a { background-color: transparent; border-color: lighten(@blue_4, 20%); color: @gray_2; }
 .dark .ui-micro-pagination ul li > a:hover { background-color: @blue_2; color: @gray_2; }
 
-@media only screen and (min-width: @screen_sm) {
-  .ui-micro-pagination { display: inline-block; }
+@media only screen and (min-width: @screen_md) {
+  .ui-micro-pagination { display: block; }
 }
 
 
@@ -1733,9 +1731,9 @@ table.list .last-edited { color: @timestamp_color; }
 .threads td.icon { background-color: @container_inner_border_color; padding: 0 !important; }
 .threads .checkbox { display: none; }
 .threads .main { width: auto; border-right-width: 1px; padding-left: 17px !important; padding-right: 17px !important; text-align: left; }
-.threads .main .link { width: 0; min-width: 100%; text-overflow: ellipsis; white-space: nowrap; vertical-align: top; overflow: hidden; display: inline-block; }
-.threads .main .link a { font-weight: bold; }
-.threads .created-by { display: block; }
+.threads .main .link { .flex-display(); .align-items(flex-start); }
+.threads .main .link-overflow { width: 0; .flex-grow(1); .flex-shrink(1); .flex-basis(0); }
+.threads .main .thread-link { font-weight: bold; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; display: block; }
 .threads .replies-views { width: 12%; min-width: 90px; text-align: right; display: none; }
 .threads .avatar { width: 70px; text-align: center; display: none; }
 .threads .avatar .avatar-wrapper::after { content: ''; width: 100%; height: 100%; border-radius: 50%; position: absolute; top: 0; left: 0; -webkit-box-shadow: inset 0 0 1px 1px rgba(0,0,0,0.1); box-shadow: inset 0 0 1px 1px rgba(0,0,0,0.1); }
@@ -1999,9 +1997,9 @@ span.pd-post-reactions-dialog-item .fa-laugh {
 .conversations td.icon { background-color: @container_inner_border_color; padding: 0 !important; }
 .conversations .checkbox { display: none; }
 .conversations .main { width: auto; border-right-width: 1px; padding-left: 17px !important; padding-right: 17px !important; }
-.conversations .main .link { width: 0; min-width: 100%; text-overflow: ellipsis; white-space: nowrap; vertical-align: top; overflow: hidden; display: inline-block; }
-.conversations .main .link a { font-weight: bold; }
-.conversations .created-by { display: block; }
+.conversations .main .link { .flex-display(); .align-items(flex-start); }
+.conversations .main .link-overflow { width: 0; .flex-grow(1); .flex-shrink(1); .flex-basis(0); }
+.conversations .main .thread-link { font-weight: bold; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; display: block; }
 .conversations .replies { width: 12%; min-width: 90px; text-align: right; display: none; }
 .conversations .replies a { color: inherit; }
 .conversations .avatar { width: 70px; text-align: center; display: none; }

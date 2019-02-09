@@ -4,18 +4,18 @@
 		<td class="checkbox clickable">$[conversation.checkbox]</td>
 		<td class="main clickable" title="$[conversation.short_content]">
             $[conversation.labels]
-            <span class="link target">
+            <div class="link target">
             	$[conversation.icons]
-                $[conversation]
-            </span>
-            <span class="created-by">
+                <span class="link-overflow">$[conversation]</span>
+                {if $[conversation.pagination]}<div class="ui-micro-pagination">$[conversation.pagination]</div>{/if}
+            </div>
+            <div class="created-by">
                 {if $[outbox]}
-                	sent to $[conversation.recipients]
+                	sent to $[conversation.recipients]<span class="break">, </span>$[conversation.created_on]
                 {else}
-                	from $[conversation.created_by]
+                	from $[conversation.created_by]<span class="break">, </span>$[conversation.created_on]
                 {/if}
-            </span>
-            {if $[conversation.pagination]}<div class="ui-micro-pagination">$[conversation.pagination]</div>{/if}
+            </div>
 		</td>
 		<td class="replies">
             <strong>$[conversation.replies]</strong> repl{if $[conversation.num_messages] != 2}ies{else}y{/if}
