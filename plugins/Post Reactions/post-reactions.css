@@ -1,0 +1,60 @@
+div.pd-post-reactions-table {
+
+    display: table;
+    width: 100%;
+    border-spacing: 0 10px;
+
+}
+
+div.pd-post-reactions-row {
+
+    display: table-row;
+
+}
+
+div.pd-post-reactions-cell {
+
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+
+}
+
+div.pd-post-reactions-cell span.pd-post-reactions-item-title {
+
+    margin-top: 3px;
+    display: block;
+
+}
+
+div.pd-post-reactions-dialog button#btn-add-reaction {
+
+    opacity: 0.6;
+
+}
+
+div.pd-post-reactions-dialog span.pd-post-reactions-dialog-item {
+
+    cursor: pointer;
+    opacity: 0.5;
+
+}
+
+div.pd-post-reactions-container {
+
+    text-align: right;
+
+}
+
+div.pd-post-reactions-container span.pd-post-reactions-item {
+
+    display: inline-block;
+    text-align: center;
+
+}
+
+div.pd-post-reactions-container span.pd-post-reactions-item:not(:last-child) {
+
+    margin-right: 5px;
+
+}

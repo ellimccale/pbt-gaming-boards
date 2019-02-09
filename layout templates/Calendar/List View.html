@@ -1,0 +1,32 @@
+<td id="$[calendar_list_id]">
+    {if $[day]}
+        <table class="cal-box">
+            {foreach $[day]}
+                <tr>
+                    <th colspan="3" class="head">
+                        $[day.month_name] $[day.ordinal_day]
+                    </th>
+                </tr>
+                {foreach $[day.event_thread]}
+                    <tr class="item{if $[day.event_thread.is_new]} new{/if}">
+                        <td class="icon">
+                            $[day.event_thread.icon]
+                        </td>
+                        <td class="main clickable">
+                            <span class="icons">$[day.event_thread.icons.new]</span>
+                            $[day.event_thread]
+                        </td>
+                        <td class="last_post">
+                            {if $[day.event_thread.last_post]}
+                            Last post by $[day.event_thread.last_post.created_by]<br />
+                            $[day.event_thread.last_post.created_on]
+                            {/if}
+                        </td>
+                    </tr>
+                {/foreach}
+            {/foreach}
+        </table>
+    {else}
+        <div class="bold center">There are no events for this month.</div>
+    {/if}
+</td>

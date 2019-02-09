@@ -1,0 +1,86 @@
+<div class="container new-area wysiwyg-area">
+    <div class="title-bar">
+        <h2>$[title_bar]</h2>
+    </div>
+    <div class="content">
+        $[form.header]
+        {if $[form.created_by_guest_name.input]}
+            <div class="guest_name">
+                <label>Guest Name:</label>
+                $[form.created_by_guest_name.input]
+            </div>
+        {/if}
+        <div class="subject_line">
+            <table>
+                <tr>
+                    <td class="subject">
+                        <label>Subject:</label>
+                    </td>
+                    <td>
+                        <div class="controls">
+                            $[poll_button]
+                            $[event_button]
+                            $[attachment_button]
+                            $[options]
+                        </div>
+                        <div class="subject_input">
+                            $[form.subject.input]
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        {if $[form.recipients.input]}
+            <div class="recipients">
+                <label>Recipients:</label>
+                $[form.recipients.input]
+            </div>
+        {/if}
+        {if $[participant]}
+            <div class="participants">
+                Participants:
+                <span class="$[participant_list_class]">
+                    {foreach $[participant]}$[participant]$[participant.comma] {/foreach}
+                </span>
+                {if $[change_participants_button]}($[change_participants_button]){/if}
+            </div>
+        {/if}
+        <div class="editor ui-helper-clearfix">
+            $[form.message.input]
+        </div>
+        {if $[form.updated_reason.input]}
+            <div class="edit_reason content-box">
+                <label>Edit Reason (optional):</label>
+                <div>$[form.updated_reason.input]</div>
+            </div>
+        {/if}
+        {if $[posting_errors]}
+            <div class="posting-errors">$[posting_errors]</div>
+        {/if}
+        $[captcha]
+        <div class="submit content-box">
+            <span class="float-right">$[form.post.button]</span>
+            <span class="note small left-item" id="$[transcription.id]"></span>
+        </div>
+            
+        <div id="show-attachment" class="attachment">
+            $[attachment_widget]
+        </div>
+        $[form.footer]
+    </div>
+</div>
+  
+{if $[summary]}
+    <div class="container $[summary.class]">
+        <div class="title-bar">
+            <h2>$[summary.title]</h2>
+        </div>
+        <div class="content">
+            <table class="list">
+                <tbody class="$[list_class]">
+                    $[summary]
+                </tbody>
+            </table>
+        </div>
+    </div>
+{/if}

@@ -1,0 +1,25 @@
+<td id="$[calendar_day_view_id]">
+    {if $[event_thread]}
+        <table class="cal-box">
+            {foreach $[event_thread]}
+                <tr class="item{if $[event_thread.is_new]} new{/if}">
+                    <td class="icon">
+                        $[event_thread.icon]
+                    </td>
+                    <td class="main clickable">
+                        <span class="icons">$[event_thread.icons.new]</span>
+                        $[event_thread]
+                    </td>
+                    <td class="last_post">
+                        {if $[event_thread.last_post]}
+                            Last post by $[event_thread.last_post.created_by]<br />
+                            $[event_thread.last_post.created_on]
+                        {/if}
+                    </td>
+                </tr>
+            {/foreach}
+        </table>
+    {else}
+        <div class="bold center">There are no events for this day.</div>
+    {/if}
+</td>

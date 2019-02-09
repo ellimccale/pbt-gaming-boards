@@ -1,0 +1,45 @@
+{if $[board.sub_board_list]}
+	<div class="container boards">
+		<div class="content">
+			$[board.sub_board_list]
+		</div>
+	</div>
+{/if}
+
+{if $[display_thread_list]}
+	<div{if $[viewing_bookmarks]} id="bookmarks"{/if} class="container threads">
+		<div class="title-bar">
+			{if $[create_thread_button]}
+				<ul class="controls">
+                    <li>
+                        <a href="$[create_thread_button.href]">
+                            <span class="create-thread">Create Thread</span>
+                            <span class="create-thread-mobile">
+                                <i class="fas fa-plus" aria-hidden="true"></i>
+                                <span class="aria-hidden">Create Thread</span>
+                            </span>
+                        </a>
+                    </li>
+            	</ul>
+			{/if}
+			<h2>$[board.display_name]</h2>
+		</div>
+		<div class="control-bar ui-helper-clearfix $[scroll_class]">
+			$[search]
+            {if !$[current_user.is_guest]}
+                <div class="controls">
+                    $[selection_menu]
+                    $[action_menu]
+                </div>
+            {/if}
+			$[pagination]
+		</div>
+		<div class="content">
+			<table class="list">
+				<tbody class="$[list_class]">
+					$[thread_list]
+				</tbody>
+			</table>
+		</div>
+	</div>
+{/if}

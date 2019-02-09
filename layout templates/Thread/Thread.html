@@ -1,0 +1,78 @@
+<div class="container posts">
+    <div class="title-bar">
+        {if $[reply_button]}
+            <ul class="controls">
+                <li>
+                    <a href="$[reply_button.href]">
+                        <span class="create-thread">Reply</span>
+                        <span class="create-thread-mobile">
+                            <i class="fas fa-plus" aria-hidden="true"></i>
+                            <span class="aria-hidden">Reply</span>
+                        </span>
+                    </a>
+                </li>
+            </ul>
+        {/if}
+        <h2>$[thread.subject]</h2>
+    </div>
+    <div class="control-bar ui-helper-clearfix $[scroll_class]">
+        $[search]
+        <div class="controls">
+            $[action_menu]
+        </div>
+        <div class="float-left">$[thread.icons]</div>
+        $[pagination]
+    </div>
+    <div class="content">
+        $[thread.labels]
+        $[poll]
+        <table class="list">
+            <tbody class="$[list_class]">
+                $[post_list]
+            </tbody>
+        </table>
+        {if !$[quick_reply]}
+            {if $[bottom_reply_button]}
+                <div class="reply_button pad-all-double">$[bottom_reply_button]<br class="clear" /></div>
+            {/if}
+        {/if}
+    </div>
+</div>
+  
+$[quick_reply]
+  
+<script>
+$(document).ready(function() {
+    // Move post controls to footer on mobile
+    (function postControls() {
+        function moveControls() {
+            $('.post.item').each(function() {
+                var $this = $(this);
+
+                var $contentHead = $this.find('.content-head');
+                var $contentFoot = $this.find('.foot');
+                var $controls    = $this.find('.controls');
+  
+                if (window.innerWidth < 520) {
+                    $controls.appendTo($contentFoot);
+                } else {
+                    $controls.appendTo($contentHead);
+                }
+            });
+        }
+  
+        moveControls();
+        pb.events.on('afterSearch', moveControls);
+        $(window).on('resize', moveControls);
+    })();
+
+    // Add padding to last visible thread status icon
+    (function addIconPadding() {
+        $('.control-icons').each(function() {
+            var $icons = $(this).children('span[class$="icon"]:visible:last');
+
+            $icons.css('margin-right', '15px');
+        });
+    })();
+});
+</script>

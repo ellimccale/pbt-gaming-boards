@@ -1,0 +1,34 @@
+<div class="container conversations">
+    <div class="title-bar">
+        {if $[create_conversation_button]}
+            <ul class="controls">
+                <li>
+                    <a href="$[create_conversation_button.href]">
+                        <span class="create-thread">Create Message</span>
+                        <span class="create-thread-mobile">
+                            <i class="fas fa-plus" aria-hidden="true"></i>
+                            <span class="aria-hidden">Create Message</span>
+                        </span>
+                    </a>
+                </li>
+            </ul>
+        {/if}
+        <h2>$[folder_pretty] ($[message_count])</h2>
+    </div>
+    <div class="control-bar ui-helper-clearfix $[scroll_class]">
+        $[search]
+        <div class="controls">
+            $[folder_menu]
+            $[selection_menu]
+            $[action_menu]
+        </div>
+        $[pagination]
+    </div>
+    <div class="content">
+        <table class="list">
+            <tbody class="$[list_class]">
+                $[conversation_list]
+            </tbody>
+        </table>
+    </div>
+</div>

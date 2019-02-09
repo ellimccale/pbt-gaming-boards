@@ -1,0 +1,145 @@
+$[form.header]
+<div class="show-user__summary">
+    <div class="show-user__summary-col show-user__summary-col--left">
+        {if $[user.personal_text.message] || $[can.update_status]}
+            <div class="show-user__summary-status">
+                {if $[user.personal_text.message]}
+                    <p class="show-user__summary-status-text">
+                        $[user.personal_text.message]
+                    </p>
+                {/if}
+                {if $[can.update_status]}
+                    <div class="show-user__summary-status-input">
+                        $[form.update.input]
+                    </div>
+                    <div class="show-user__summary-status-submit">
+                        $[form.submit.button]
+                    </div>
+                {/if}
+            </div>
+        {/if}
+        {if $[user.warning.bar]}
+        	<div class="show-user__summary-content-box">
+                <p>
+                    <span class="label">Warning Level:</span>
+                    <span class="value">$[user.warning.level]%</span>
+                </p>
+        	</div>
+        {/if}
+        <div class="show-user__summary-content-box">
+            {if $[user.custom_title]}
+            	<p>
+                	<span class="label">Custom Title:</span>
+                	<span class="value">$[user.custom_title]</span>
+            	</p>
+            {/if}
+            {if !$[user.is_online]}
+                <p>
+                    <span class="label">Last Online:</span>
+                    <span class="value">$[user.last_online]</span>
+                </p>
+            {/if}
+            {if $[user.email]}
+            	<p>
+                	<span class="label">Email:</span>
+                	<span class="value">$[user.email]</span>
+            	</p>
+            {/if}
+            {if $[user.website]}
+                <p>
+                    <span class="label">Website:</span>
+                    <span class="value">$[user.website]</span>
+                </p>
+            {/if}
+            {if $[user.birthday]}
+                <p>
+                    <span class="label">Birthday:</span>
+                    <span class="value">$[user.birthday]</span>
+                </p>
+            {/if}
+            {if $[user.age]}
+                <p>
+                    <span class="label">Age:</span>
+                    <span class="value">$[user.age]</span>
+                </p>
+            {/if}
+            {if $[user.gender]}
+                <p>
+                    <span class="label">Gender:</span>
+                    <span class="value">$[user.gender.text]</span>
+                </p>
+            {/if}
+            {if $[user.location]}
+                <p>
+                    <span class="label">Location:</span>
+                    <span class="value">$[user.location]</span>
+                </p>
+            {/if}
+            <p>
+                <span class="label">Posts:</span>
+                <span class="value">$[user.posts]</span>
+            </p>
+            <p>
+                <span class="label">Date Registered:</span>
+                <span class="value">$[user.registered_on]</span>
+            </p>
+        </div>
+        <div id="js-custom-fields" class="show-user__summary-content-box">
+            {foreach $[user.custom_field]}
+            	{if $[user.custom_field.name] != "Profile Cover Image" && $[user.custom_field.name] != "Profile Cover Position" && $[user.custom_field.name] != "Profile Cover Repeat"}
+                    <p class="$[user.custom_field.content_class]">
+                        <span class="label">
+                            <i>
+                                {if $[user.custom_field.name] == "Xbox Live"}
+                                	<img src="//storage.proboards.com/6882687/images/RqTTmOjHLhCxyqSLYeMT.png" alt="Xbox Live icon" aria-hidden="true" />
+                                {elseif $[user.custom_field.name] == "PlayStation Network"}
+                                	<img src="//storage.proboards.com/6882687/images/wTFCbjvAVWzksmgXgUT0.png" alt="PlayStation Network icon" aria-hidden="true" />
+                                {elseif $[user.custom_field.name] == "Steam"}
+                                	<img src="//storage.proboards.com/6882687/images/rymIGNPbacMLkWAKBejF.png" alt="Steam icon" aria-hidden="true" />
+                                {elseif $[user.custom_field.name] == "Origin"}
+                                	<img src="//storage.proboards.com/6882687/images/HUID0vHZcXJbTQRgxUyr.png" alt="Origin icon" aria-hidden="true" />
+                                {elseif $[user.custom_field.name] == "Battle.net"}
+                                	<img src="//storage.proboards.com/6882687/images/kNbLcVbYXidjTRkjijPV.png" alt="Battle.net icon" aria-hidden="true" />
+                                {elseif $[user.custom_field.name] == "Nintendo Network"}
+                                	<img src="//storage.proboards.com/6882687/images/svgfaRtQlzdSPTmEfABI.png" alt="Nintendo Network icon" aria-hidden="true" />
+                                {elseif $[user.custom_field.name] == "Discord"}
+                                	<img src="//storage.proboards.com/6882687/images/iupsMRBvkbzIaJtSAiCQ.png" alt="Discord icon" aria-hidden="true" />
+                                {/if}
+                            </i>
+                            $[user.custom_field.name]:
+                        </span>
+                        <span class="value">
+                            $[user.custom_field.value]
+                        </span>
+                    </p>
+            	{/if}
+            {/foreach}
+        </div>
+        <div class="show-user__summary-content-box">
+            $[recent_posts_link]<br>
+            $[recent_threads_created_link]
+        </div>
+        {if $[user.signature]}
+            <div class="show-user__summary-content-box">
+                $[user.signature]
+            </div>
+        {/if}
+    </div>
+    {if $[following] || $[follower]}
+    	<div class="show-user__summary-col show-user__summary-col--right">
+            {if $[following]}
+                <h4>$[view_following_link]</h4>
+                {foreach $[following]}
+                    $[following.microprofile]
+                {/foreach}
+            {/if}
+            {if $[follower]}
+                <h4>$[view_followers_link]</h4>
+                {foreach $[follower]}
+                	$[follower.microprofile]
+                {/foreach}
+            {/if}
+    	</div>
+    {/if}
+</div>
+$[form.footer]

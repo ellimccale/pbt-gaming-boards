@@ -1,0 +1,32 @@
+<div class="container members">
+    <div class="title-bar">
+        <h2>Member List</h2>
+    </div>
+    <div class="control-bar $[scroll_class] ui-helper-clearfix">
+        $[search]
+        <div class="controls">
+            $[view_menu]
+            $[selection_menu]
+            $[action_menu]
+        </div>
+        $[pagination]
+    </div>
+    <div class="content">
+        <table class="list">
+            <thead>
+                <tr class="head">
+                    <th class="checkbox">&nbsp;</th>
+                    <th class="name $[sortable_class.name]">Name</th>
+                    <th class="username $[sortable_class.username]">Username</th>
+                    <th class="rank $[sortable_class.group_and_rank]">Group / Rank</th>
+                    <th class="posts $[sortable_class.posts]">Posts</th>
+                    <th class="date-registered $[sortable_class.registered_on]">Date Registered</th>
+                    <th class="last-online $[sortable_class.last_online]">Last Online</th>
+                </tr>
+            </thead>
+            <tbody class="$[list_class]">
+                $[user_list]
+            </tbody>
+        </table>
+    </div>
+</div>

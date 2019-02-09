@@ -1,0 +1,22 @@
+<div class="container threads">
+    <div class="title-bar">
+        <h2>Search Results</h2>
+    </div>
+    <div class="control-bar ui-helper-clearfix $[scroll_class]">
+        $[search]
+        {if !$[current_user.is_guest]}
+            <div class="controls">
+                $[selection_menu]
+                $[action_menu]
+            </div>
+        {/if}
+        $[pagination]
+    </div>
+    <div class="content">
+        <table class="list">
+            <tbody class="$[list_class]">
+                $[thread_list]
+            </tbody>
+        </table>
+    </div>
+</div>

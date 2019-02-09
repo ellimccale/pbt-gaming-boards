@@ -1,0 +1,20 @@
+{foreach $[post]}
+	<tr id="$[post.content_id]" class="$[post.content_class]">
+		<td class="content">
+			<div class="content-head">
+				<div class="info">
+                    <div class="author">Posted by <span data-item="created-by">$[post.created_by]</span></div>
+					<div class="date"><i class="far fa-clock" aria-hidden="true"></i> $[post.created_on]</div>
+				</div>
+			</div>
+			<div class="message">
+				$[post.message]
+			</div>
+		</td>
+	</tr>
+	<tr class="spacer"><td></td></tr>
+{/foreach}
+
+{if !$[post]}
+	<tr><td class="center">No Posts were found.</td></tr>
+{/if}

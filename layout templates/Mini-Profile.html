@@ -1,0 +1,23 @@
+<div class="$[miniprofile_class]">
+    {if $[user.avatar]}
+        <div class="mini-profile__avatar">$[user.avatar]</div>
+    {/if}
+    <span class="mini-profile__name">$[user]</span>
+    {if !$[user.is_guest]}
+        {if $[user.group]}
+            <span class="mini-profile__group">$[user.group.name]</span>
+            <span class="mini-profile__stars">$[user.group.stars]</span>
+        {elseif $[user.rank]}
+            <span class="mini-profile__group">$[user.rank.name]</span>
+            {if $[user.rank.stars]}
+                <span class="mini-profile__stars">$[user.rank.stars]</span>
+            {/if}
+        {/if}
+    {else}
+        {if $[user.is_deleted]}
+            <span class="mini-profile__group">Deleted Member</span>
+        {else}
+            <span class="mini-profile__group">Guest</span>
+        {/if}
+    {/if}
+</div>

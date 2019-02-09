@@ -1,0 +1,60 @@
+<div class="container boards">
+    <div class="content">
+        {foreach $[category]}
+            $[category.board_list]
+        {/foreach}
+    </div>
+</div>
+
+{if $[show_stats]}
+  <div class="container stats">
+        <div class="title-bar"><h2>Forum Information &amp; Statistics</h2></div>
+        <div class="content">
+            <div class="stats__row">
+                <div class="stats__col stats__col--threads">
+                    <p class="stats__title">Threads and Posts</p>
+                    <p>Total Threads: $[total_threads] &nbsp;&nbsp;&nbsp;&nbsp; Total Posts: $[total_posts]</p>
+                    {if $[last_updated_thread]}
+                        <p>Last Updated: $[last_updated_thread.recent_link] by <span data-item="last-updated" data-value="$[last_updated_thread.last_post.id]">$[last_updated_thread.last_post.created_by]</span> $[last_updated_thread.last_post.created_on]</p>
+                    {/if}
+                    <p>$[recent_threads_link] - $[recent_posts_link]{if $[mark_boards_read_link]} - $[mark_boards_read_link]{/if}</p>
+                </div>
+                <div class="stats__col stats__col--members">
+                    <p class="stats__title">Members</p>
+                    <p>Total Members: $[total_members]</p>
+                    <p>Newest Member: $[newest_user]</p>
+                    <p>Most Users Online: $[most_users_online] as of $[most_users_online_date]</p>
+                </div>
+            </div>
+            <div class="stats__row">
+                <div class="stats__col">
+                    <p class="stats__title">
+                        Users Online
+                        <span class="stats__online-counter">$[total_staff_online] Staff, $[total_members_online] Member{if $[total_members_online] != 1}s{/if}, {if $[view_guests_online_link]}<a href="#" class="$[view_guests_online_link.class]">{/if}$[total_guests_online] Guest{if $[total_guests_online] != 1}s{/if}{if $[view_guests_online_link]}</a>{/if}</span>
+                    </p>
+                    <div class="stats__online">
+                        {foreach $[online_user]}
+                            <a data-id="$[online_user.id]" href="$[online_user.href]" title="@$[online_user.username]" class="$[online_user.class]">$[online_user.avatar_small]</a>
+                        {/foreach}
+                    </div>
+                </div>
+            </div>
+            <div class="stats__row">
+                <div class="stats__col">
+                    <p class="stats__title">
+                        Users Online in the Last 24 Hours
+                        <span class="stats__online-counter">$[total_staff_online_24] Staff, <a class="$[view_todays_active_members_link.class]" href="$[view_todays_active_members_link.href]">$[total_members_online_24] Member{if $[total_members_online_24] != 1}s{/if}</a>, $[total_guests_online_24] Guest{if $[total_guests_online_24] != 1}s{/if}</span>
+                    </p>
+                    <p>
+                        {foreach $[online_user_24]}
+                            $[online_user_24]{if $[online_user_24.invisible]} <span class="small">(invisible)</span>{/if}$[online_user_24.comma]
+                        {/foreach}
+                        {if $[total_online_not_shown_24]}
+                            , and <a class="$[view_todays_active_members_link.class]" href="$[view_todays_active_members_link.href]">$[total_online_not_shown_24] more...</a>
+                        {/if}
+                    </p>
+                </div>
+            </div>
+        </div>
+  </div>
+{/if}

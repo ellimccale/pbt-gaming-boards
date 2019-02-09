@@ -1,0 +1,17 @@
+<div id="RT-parent" style="position: absolute; right: 0px; display: none;">
+    <div id="RT-Master" style="display: none;">
+        <div class="RTCell" id="recent-threads-cell"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    /*
+	Recently Updated Threads Sidebar v0.3.4
+	Copyright 2014
+	Please keep this header intact
+	*/
+
+    if (document.referrer.match(/\/thread\/new\//) && document.location.href.match(/\/thread\/\d/)) {
+        check_new_thread_id();
+    }
+</script>

@@ -1,0 +1,34 @@
+<td class="$[current_month_container]">
+    <table class="cal-box">
+        <tr class="weekdays">
+            <th>Sun</th>
+            <th>Mon</th>
+            <th>Tues</th>
+            <th>Wed</th>
+            <th>Thurs</th>
+            <th>Fri</th>
+            <th class="last">Sat</th>
+        </tr>
+        {foreach $[week]}
+            <tr class="week{if $[week.index] == $[week.lastIndex]} last{/if}">
+                {foreach $[week.day]}
+                    <td class="$[week.day.class]{if $[week.day.off]} off{/if}{if $[week.day.today]} today{/if}{if $[week.day.index] == $[week.day.lastIndex]} last{/if}">
+                        <div class="head">
+                            $[week.day.month_view_link]
+                        </div>
+                        <div class="body">
+                            {foreach $[week.day.event_thread]}
+                                {if $[week.day.event_thread.iteration] < 4}
+                                    $[week.day.event_thread]<br />
+                                {/if}
+                                {if $[week.day.event_thread.iteration] == 4}
+                                    $[week.day.more_events_link]
+                                {/if}
+                            {/foreach}
+                        </div>
+                    </td>
+                {/foreach}
+            </tr>
+        {/foreach}
+    </table>
+</td>

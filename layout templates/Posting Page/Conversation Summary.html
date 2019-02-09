@@ -1,0 +1,20 @@
+{foreach $[message]}
+	<tr id="$[message.content_id]" class="$[message.content_class]">
+		<td class="content">
+			<div class="content-head">
+				<div class="info">
+					<div class="author">Sent by $[message.created_by]</div>
+					<div class="date"><i class="far fa-clock" aria-hidden="true"></i> $[message.created_on]</div>
+				</div>
+			</div>
+			<div class="message">
+				$[message.body]
+			</div>
+		</td>
+	</tr>
+	<tr class="spacer"><td></td></tr>
+{/foreach}
+
+{if !$[message]}
+	<tr><td class="center">No Messages were found.</td></tr>
+{/if}

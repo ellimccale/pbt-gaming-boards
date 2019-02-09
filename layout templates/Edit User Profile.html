@@ -1,0 +1,48 @@
+<div class="container edit-user confirm-ignore-changes">
+    <div class="title-bar">
+        <h2>Edit Profile &amp; Settings</h2>
+    </div>
+    <div class="content">
+        <div class="ui-tabMenu">
+            <ul class="ui-helper-clearfix">
+                {foreach $[menu]} <!-- replace href with class -->
+                    <li{if $[menu.active]} class="ui-active"{/if}><a class="js-tab" data-page="$[menu.href]">$[menu.text]</a></li>
+                {/foreach}
+            </ul>
+        </div>
+        <div class="pad info">
+            <span class="username float-right">Username: $[user.username]</span>
+            <span class="big_username" style="color: $[user.color];">$[user.name]</span><br>
+        </div>
+        <noscript>
+            <div class="content-box">Please enable Javascript for your browser to edit member profiles.</div>
+            <style> .js-enabled {display: none;} </style>
+        </noscript>
+        <div class="clear js-enabled">
+            <div class="js-edit admin-edit              $[edit_area.display_admin]">
+                $[edit_admin]
+            </div>
+            <div class="js-edit avatar-edit             $[edit_area.display_avatar]">
+                $[edit_avatar]
+            </div>
+            <div class="js-edit badges-edit             $[edit_area.display_badges]">
+                $[edit_badges]
+            </div>
+            <div class="js-edit personal-edit           $[edit_area.display_personal]">
+                $[edit_personal]
+            </div>
+            <div class="js-edit privacy-edit            $[edit_area.display_privacy]">
+                $[edit_privacy]
+            </div>
+            <div class="js-edit edit_notifications-edit $[edit_area.display_edit_notifications]">
+                $[edit_notifications]
+            </div>
+            <div class="js-edit settings-edit           $[edit_area.display_settings]">
+                $[edit_settings]
+            </div>
+            <div class="js-edit social-edit             $[edit_area.display_social]">
+                $[edit_social]
+            </div>
+        </div>
+    </div>
+</div>

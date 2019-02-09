@@ -1,0 +1,101 @@
+{foreach $[board]}
+    {if !$[board.is_redirect]}
+        <div id="$[board.content_id]" class="boards__item $[board.content_class]">
+            <div class="boards__item-row boards__item-row--title">
+                <div class="boards__item-col boards__item-col--name clickable">
+                    <h2 class="link">$[board] {if $[board.num_viewing]}<span class="viewing"> - $[board.num_viewing] Viewing</span>{/if}</h2>
+                </div>
+                <div class="boards__item-col boards__item-col--icon">
+                    {if $[board.name] == "PC Gaming"}
+                        <i class="far fa-desktop" title="Board" aria-hidden="true"></i>
+                    {elseif $[board.name] == "Console Gaming"}
+                         <i class="far fa-trophy" title="Board" aria-hidden="true"></i>
+                    {elseif $[board.name] == "Mobile Gaming"}
+                        <i class="far fa-mobile-alt" title="Board" aria-hidden="true"></i>
+                    {elseif $[board.name] == "Old-School Zone"}
+                        <i class="far fa-gamepad" title="Board" aria-hidden="true"></i>
+                    {elseif $[board.name] == "Coffee Time"}
+                         <i class="far fa-coffee" title="Board" aria-hidden="true"></i>
+                    {elseif $[board.name] == "Help Desk"}
+                        <i class="far fa-info-circle" title="Board" aria-hidden="true"></i>
+                    {else}
+                        <i class="far fa-folder" title="Board" aria-hidden="true"></i>
+                    {/if}
+                </div>
+            </div>
+            {if $[board.description]}
+                <div class="boards__item-col boards__item-col--description">
+                    <p>$[board.description]</p>
+                </div>
+            {/if}
+            <div class="boards__item-col boards__item-col--posts">
+                <p>
+                    {if $[board.posts] == -1}
+                        N/A
+                    {else}
+                        <span class="number">$[board.posts]</span><br>
+                        Post{if $[board.posts] != 1}s{/if}
+                    {/if}
+                </p>
+            </div>
+            <div class="boards__item-col boards__item-col--latest">
+                <span data-item="latest" data-value="$[board.last_thread.last_post.id]">$[board.last_thread.last_post.created_by.avatar_small]</span>
+                <p>
+                    {if $[board.posts] > 0}
+                        {if $[board.last_thread]}
+                            $[board.last_thread.recent_link]<br>
+                            by <span data-item="latest" data-value="$[board.last_thread.last_post.id]">$[board.last_thread.last_post.created_by]</span><br>
+                            $[board.last_thread.last_post.created_on]
+                        {/if}
+                    {else}
+                        No posts have been made on this board.
+                    {/if}
+                </p>
+            </div>
+            {if $[board.sub_board] || $[board.num_mods]}
+                <div class="boards__item-row boards__item-row--sub-boards">
+                    <div class="boards__item-col boards__item-col--sub-boards">
+                        <p>
+                            {if $[board.sub_board]}
+                                <span>
+                                    <strong>Sub-board{if $[board.sub_board] != 1}s{/if}:</strong>
+                                    {foreach $[board.sub_board]}<a href="$[board.sub_board.href]">$[board.sub_board.name]</a>$[board.sub_board.comma] {/foreach}
+                                </span>
+                            {/if}
+                            {if $[board.num_mods]}
+                                <span>
+                                    <strong>Moderator{if $[board.num_mods] != 1}s{/if}:</strong>
+                                    {foreach $[board.moderator]}$[board.moderator]$[board.moderator.comma] {/foreach}
+                                </span>
+                            {/if}
+                        </p>
+                    </div>
+                </div>
+            {/if}
+        </div>
+    {else}
+        <div id="$[board.content_id]" class="boards__item $[board.content_class]">
+            <div class="boards__item-row boards__item-row--title">
+                <div class="boards__item-col boards__item-col--name clickable">
+                    <h2 class="link">$[board]</h2>
+                </div>
+                <div class="boards__item-col boards__item-col--icon">
+                    <i class="fas fa-sign-out-alt" title="Redirect Board" aria-hidden="true"></i>
+                </div>
+            </div>
+            {if $[board.description]}
+                <div class="boards__item-col boards__item-col--description">
+                    <p>$[board.description]</p>
+                </div>
+            {/if}
+        </div>
+    {/if}
+{/foreach}
+
+{if !$[board]}
+    <div class="boards__item">
+        <div class="boards__item-col">
+            <p>No boards were found.</p>
+        </div>
+    </div>
+{/if}

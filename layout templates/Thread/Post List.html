@@ -1,0 +1,64 @@
+{foreach $[post]}
+	<tr id="$[post.content_id]" class="$[post.content_class]{if $[viewing_recent_posts]} recent{/if}">
+		<td class="$[post.unblocked_class]">
+			<table>
+				<tr>
+					<td class="left-panel" rowspan="2">
+						$[post.created_by.miniprofile]
+					</td>
+					<td class="content">
+						<article>
+							<div class="content-head">
+								<div class="info">
+									$[post.thread]
+									<span class="date"><i class="far fa-clock" aria-hidden="true"></i> Posted $[post.created_on]</span>
+									{if $[post.how_posted]}
+										<span class="post-method">via $[post.how_posted]</span>
+									{/if}
+								</div>
+								<div class="controls">
+									{if $[post.can.quote]}
+                                        <a href="$[post.quote_button.href]" class="$[post.quote_button.class]" title="Quote Post" role="$[post.quote_button.role]">
+                                            <i class="fas fa-quote-right" aria-hidden="true"></i>
+                                            <span class="aria-hidden">Quote Post</span>
+                                        </a>
+                                    {/if}
+                                    {if $[post.can.edit]}
+                                        <a href="$[post.edit_button.href]" class="$[post.edit_button.class]" title="Edit Post" role="$[post.edit_button.role]">
+                                            <i class="fas fa-pencil" aria-hidden="true"></i>
+                                            <span class="aria-hidden">Edit Post</span>
+                                        </a>
+                                    {/if}
+									$[post.select_options]
+								</div>
+							</div>
+							<h3 class="aria-hidden">Post by $[post.created_by.name] on $[post.created_on]</h3>
+							<div class="message">$[post.message]</div>
+						</article>
+					</td>
+				</tr>
+				<tr>
+					<td class="foot">
+						{if $[post.edited]}
+							<div class="edited_by">Last edited $[post.edited.date] by $[post.edited.by_user]{if $[post.edited.reason]}: $[post.edited.reason]{/if}</div>
+						{/if}
+						{if $[post.created_by.signature]}
+							<div class="signature">$[post.created_by.signature]</div>
+						{/if}
+					</td>
+				</tr>
+			</table>
+		</td>
+		{if $[post.is_blocked]}
+			<td class="$[post.blocked_class] content center">
+				<div class="message note pad-bottom">You have blocked this user's posts.</div>
+				$[post.display_blocked_post_button]
+			</td>
+		{/if}
+	</tr>
+	<tr class="spacer"><td></td></tr>
+{/foreach}
+
+{if !$[post]}
+	<tr><td class="center">No posts were found.</td></tr>
+{/if}

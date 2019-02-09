@@ -1,0 +1,12 @@
+{foreach $[shoutbox_post]}
+	<div class="$[shoutbox_post.content_class] content-box"{if $[shoutbox_post.edited]} title="$[shoutbox_post.edited]"{/if}>
+		$[shoutbox_post.created_by]: <span class="message">$[shoutbox_post.message]</span>
+		<span class="details">
+			$[shoutbox_post.ban_button]
+			$[shoutbox_post.edit_button]
+			$[shoutbox_post.created_on]
+			{if $[shoutbox_post.edited]}<span class="edited">*</span>{/if}
+		</span>
+		$[shoutbox_post.delete_button]
+	</div>
+{/foreach}

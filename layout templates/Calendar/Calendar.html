@@ -1,0 +1,56 @@
+<div class="container calendar">
+    <div class="title-bar">
+        <ul class="controls"><li>$[new_event_button]</li></ul>
+        <h2>Calendar</h2>
+    </div>
+    <div class="control-bar ui-helper-clearfix">
+        <ul class="ui-pagination">
+            <li>$[today]</li>
+            <li>$[prev_selection]</li>
+            <li class="state-selected">$[selection]</li>
+            <li>$[next_selection]</li>
+        </ul>
+        <div class="calendar-jump controls">
+            $[type_menu]
+            $[month_menu]
+            $[year_menu]
+            $[go_button]
+        </div>
+    </div>
+    <div class="content cap-bottom">
+        <table>
+            <tr>
+                <td class="$[preview_container_class]">
+                    {foreach $[month_preview]}
+                        <table class="cal-box">
+                            <tr class="header last">
+                                <th colspan="7">$[month_preview.link]</th>
+                            </tr>
+                            <tr class="weekdays">
+                                <td>S</td>
+                                <td>M</td>
+                                <td>T</td>
+                                <td>W</td>
+                                <td>T</td>
+                                <td>F</td>
+                                <td class="last">S</td>
+                            </tr>
+                            {foreach $[month_preview.week]}
+                                <tr class="week{if $[month_preview.week.index] == $[month_preview.week.lastIndex]} last{/if}">
+                                    {foreach $[month_preview.week.day]}
+                                        <td class="$[month_preview.week.day.class]{if $[month_preview.week.day.off]} off{/if}{if $[month_preview.week.day.current]} current-day{/if}{if $[month_preview.week.day.index] == $[month_preview.week.day.lastIndex]} last{/if}">
+                                            <div class="head">
+                                                $[month_preview.week.day.preview_link]
+                                            </div>
+                                        </td>
+                                    {/foreach}
+                                </tr>
+                            {/foreach}
+                        </table>
+                    {/foreach}
+                </td>
+                $[content]
+            </tr>
+        </table>
+    </div>
+</div>

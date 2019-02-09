@@ -1,0 +1,35 @@
+<div class="container quick-reply">
+    <div class="title-bar">
+        <ul class="controls">
+            <li>
+                <a href="$[reply_button.href]">
+                    <span class="create-thread">Reply</span>
+                    <span class="create-thread-mobile">
+                        {if $[route.name] == 'conversation'}
+                            <i class="fas fa-reply" aria-hidden="true"></i>
+                        {else}
+                            <i class="fas fa-plus" aria-hidden="true"></i>
+                        {/if}
+                        <span class="aria-hidden">Reply</span>
+                    </span>
+                </a>
+            </li>
+        </ul>
+      <h2>Quick Reply</h2>
+    </div>
+    <div class="content">
+        $[form.header]
+        {if $[form.created_by_guest_name.input]}
+            <div class="guest_name">
+                <label>Guest Name:</label>
+                $[form.created_by_guest_name.input]
+            </div>
+        {/if}
+        <div class="message">
+            $[form.message.input]
+        </div>
+        $[captcha]
+        $[form.post.button]
+        $[form.footer]
+    </div>
+</div>  

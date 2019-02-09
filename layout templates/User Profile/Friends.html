@@ -1,0 +1,44 @@
+<div class="content-box">
+    <p class="pad-bottom-double"><span class="friends-stats">($[total_online]) Online &nbsp;&nbsp; ($[total_offline]) Offline</span>  Friends are members that are following each other.</p>
+  
+    {if $[online_friend]}
+        <div class="online-friends clear">
+            {foreach $[online_friend]}
+                $[online_friend.microprofile]
+            {/foreach}
+        </div>
+    {/if}
+  
+    {if $[offline_friend]}
+        <div class="offline-friends clear">
+            {foreach $[offline_friend]}
+                $[offline_friend.microprofile]
+            {/foreach}
+        </div>
+    {/if}
+  
+    {if $[view_friends_link]}
+        <div class="members-link-container clear">
+            $[view_friends_link]
+        </div>
+    {/if}
+  
+    {if $[suggested_user]}
+        <div class="suggested-friends pad-all-double clear">
+            <div class="bold pad-bottom">Other members you might know...</div>
+            {foreach $[suggested_user]}
+                <div class="mini-user $[suggested_user.class]">
+                    <div class="mini-user-inside pad-bottom-thin">
+                        <div class="mini-avatar">
+                            $[suggested_user.avatar_medium]
+                        </div>
+                        <span class="name">
+                            $[suggested_user]
+                        </span>
+                    </div>
+                    $[suggested_user.follow_button]
+                </div>
+            {/foreach}
+        </div>
+    {/if}
+</div>

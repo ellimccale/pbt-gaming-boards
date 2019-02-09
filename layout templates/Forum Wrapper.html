@@ -1,0 +1,643 @@
+<!DOCTYPE HTML>
+$[tag.html.open]
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>$[title] | $[forum.name]</title>
+
+        $[head]
+
+        <!-- Font Awesome 5.7.1 -->
+        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-6jHF7Z3XI3fF4XZixAuSu0gGKrXwoX/w3uFPxC56OtjChio7wtTGJWRW53Nhx6Ev" crossorigin="anonymous">
+
+        <script>
+        $(document).ready(function() {
+            /**
+             * jQuery UI Dialog changes
+             * Has to be in `<head>` to load in the right order.
+             *
+             * 1. Create darkened overlay behind dialogs
+             * 2. Offset positioning for top bar
+             */
+            (function darkenDialogOverlay() {
+                var open_ref = $.ui.dialog.prototype.open;
+
+                $.ui.dialog.prototype.open = function(){
+                    this.options.modal = true; // 1
+                    this.options.position = { offset: "0 25px" }; // 2
+                    open_ref.apply(this, arguments);
+                }
+            })();
+
+            /**
+             * Manually set `max-height` of dialog content because CSS `vh`
+             * unit doesn't work as I'd like it to on mobile browsers.
+             *
+             * 1. Approximation of height of dialog padding, title bar, and footer
+             */
+            (function setDialogHeight() {
+                var trueViewportHeight = window.innerHeight - 220; // 1
+
+                $('.ui-dialog div.ui-dialog-content').css('max-height', (trueViewportHeight + 'px'));
+            })();
+        });
+        </script>
+    </head>
+    <body>
+        <script>
+        /**
+         * Set `dark` class on body if night mode should be enabled.
+         * Has to be at top of `<body>` so that body exists, and happens
+         * as soon as possible.
+         */
+        if (localStorage.getItem('nightmode') === 'true') {
+			document.body.className = 'dark';
+        }
+        </script>
+
+        {if $[maintenance_mode]}
+            <div class="maintenance-header">
+                {if $[can.disable_maintenance]}<p>Finished with maintenance? $[disable_maintenance_link].</p>{/if}
+            </div>
+        {/if}
+
+        <header role="banner">
+            <div class="header__top-bar">
+                <div class="header__wrapper">
+                    {if $[navigation.tree]}
+                        <div class="navigation-tree">
+                            <a href="#content" accesskey="s" class="aria-hidden">Skip Navigation</a>
+                            $[navigation.tree]
+                        </div>
+                    {/if}
+
+                    <nav class="navigation-menu navigation-menu--secondary" role="navigation" aria-label="Secondary Navigation">
+                        <a href="#content" accesskey="s" class="aria-hidden">Skip Navigation</a>
+                        <ul>
+                            {if !$[current_user.is_member]}
+                                <li class="welcome">
+                                    Welcome, Guest
+                                </li>
+                                <li>
+                                    <a href="$[login_link.href]" target="_parent" class="$[login_link.class]">Login</a>
+                                </li>
+                                <li>
+                                    <a href="$[register_link.href]" target="_parent" class="$[register_link.class]">Register</a>
+                                </li>
+                            {else}
+                                <li>
+                                    <a href="javascript:void(0);" title="User Options">
+                                        <span class="navigation-menu__username">Hello, $[current_user.name]</span>
+                                        <i class="fas fa-caret-down" aria-hidden="true"></i>
+                                    </a>
+                                    <ul class="navigation-menu__dropdown fallback">
+                                        <li>
+                                            <a href="$[current_user.href]" target="_parent">
+                                                <i class="far fa-user" aria-hidden="true"></i>
+                                                User Profile
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="$[current_user.href]/personal" target="_parent">
+                                                <i class="far fa-user-cog" aria-hidden="true"></i>
+                                                Edit User Settings
+                                            </a>
+                                        </li>
+                                        {if $[current_user.can_admin]}
+                                            <li>
+                                                <a href="/admin" target="_parent">
+                                                    <i class="far fa-cogs" aria-hidden="true"></i>
+                                                    Admin
+                                                </a>
+                                            </li>
+                                        {/if}
+                                        <li class="navigation-menu__dropdown-separator">
+                                            <a href="$[logout_link.href]" target="_parent">
+                                                <i class="far fa-sign-out" aria-hidden="true"></i>
+                                                Log out
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="has-icon">
+                                    <a href="$[current_user.href]/notifications" target="_parent" title="Notifications" class="has-icon">
+                                        <i class="{if $[current_user.new_notifications]}fas{else}far{/if} fa-bell" aria-hidden="true"></i>
+                                        <span class="aria-hidden">Notifications</span>
+                                        {if $[current_user.new_notifications]}
+                                            <div class="navigation-menu__notification" onclick="window.location='$[current_user.href]/notifications'; return false;">
+                                                $[current_user.new_notifications]
+                                            </div>
+                                        {/if}
+                                    </a>
+                                </li>
+                                <li class="has-icon">
+                                    <a href="/conversations" target="_parent" title="Messages" class="has-icon">
+                                        <i class="{if $[current_user.messages.new]}fas{else}far{/if} fa-envelope" aria-hidden="true"></i>
+                                        <span class="aria-hidden">Messages</span>
+                                        {if $[current_user.messages.new]}
+                                            <div class="navigation-menu__notification" onclick="window.location='/conversations'; return false;">
+                                                $[current_user.messages.new]
+                                            </div>
+                                        {/if}
+                                    </a>
+                                </li>
+                            {/if}
+                            <li class="has-icon">
+                                <a href="/search" target="_parent" title="Search" class="has-icon">
+                                    <i class="far fa-search" aria-hidden="true"></i>
+                                    <span class="aria-hidden">Search</span>
+                                </a>
+                            </li>
+                            <li class="has-icon">
+                                <a href="javascript:void(0);" title="Recent Activity" class="has-icon">
+                                    <i class="far fa-ellipsis-v" aria-hidden="true"></i>
+                                    <span class="aria-hidden">Recent Activity</span>
+                                </a>
+                                <ul class="navigation-menu__dropdown fallback">
+                                    <li>
+                                        <a href="/threads/recent" target="_parent">
+                                            <i class="far fa-star" aria-hidden="true"></i>
+                                            Recent Threads
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="/posts/recent" target="_parent">
+                                            <i class="fas fa-star" aria-hidden="true"></i>
+                                            Recent Posts
+                                        </a>
+                                    </li>
+                                    {if $[current_user.is_member]}
+                                        <li>
+                                            <a href="/bookmarks" target="_parent" title="Bookmarks">
+                                                <i class="far fa-bookmark" aria-hidden="true"></i>
+                                                Bookmarks
+                                            </a>
+                                        </li>
+                                    {/if}
+                                    {if $[participated_threads_link]}
+                                        <li class="navigation-menu__dropdown-separator">
+                                            <a href="$[participated_threads_link.href]" title="Participated Threads" class="$[participated_threads_link.class]">
+                                                Participated Threads
+                                            </a>
+                                        </li>
+                                    {/if}
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+
+            <div class="header__banner">
+                <div class="header__wrapper">
+                    <h1>
+                        <a href="/" target="_parent" title="GamingBoards.net" class="header__banner-logo">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 444.5 170.33" class="header__banner-svg" aria-hidden="true" focusable="false">
+                                <path fill="#00bbd4" d="M82 99.39h102.78v21.31a21.34 21.34 0 0 1-21.31 21.3H49.64a20.22 20.22 0 0 1-15-6.31 20.22 20.22 0 0 1-6.31-15V49.64a20.49 20.49 0 0 1 6.31-15 20.43 20.43 0 0 1 15-6.19h181.63L248.94 0H49.64a47.89 47.89 0 0 0-35.12 14.64A47.7 47.7 0 0 0 0 49.64v71.06a48.09 48.09 0 0 0 14.52 35.11 48.08 48.08 0 0 0 35.11 14.52h113.84a49.78 49.78 0 0 0 49.75-49.64V70.94H99.67z"></path>
+                                <path fill="#f7f7f7" d="M444.5 49.64a47.51 47.51 0 0 0-14.64-35A47.64 47.64 0 0 0 394.75 0H267l-17.68 28.45h145.43a21.13 21.13 0 0 1 21.3 21.19 21.13 21.13 0 0 1-21.3 21.31H231.27v99.39h163.48a49.79 49.79 0 0 0 49.75-49.64 47.49 47.49 0 0 0-15-35.47 47.87 47.87 0 0 0 15-35.59zm-34.64 86.06a20.61 20.61 0 0 1-15.11 6.3h-135V99.39h135a21.13 21.13 0 0 1 21.3 21.31 20.42 20.42 0 0 1-6.19 14.99z"></path>
+                            </svg>
+                            <span class="header__banner-title">
+                                Gaming<span class="header__banner-title--gray">Boards.net</span>
+                            </span>
+                            <span class="header__banner-subtitle">
+                                Where Gamers Unite
+                            </span>
+                        </a>
+                    </h1>
+
+                    <nav id="js-menu" class="navigation-menu navigation-menu--primary" role="navigation" aria-label="Main Navigation">
+                        <a href="#content" accesskey="s" class="aria-hidden">Skip Navigation</a>
+                        <a href="javascript:void(0);" title="Open Menu" id="js-toggle-menu" class="navigation-menu__mobile-link">
+                            <i class="far fa-bars" aria-hidden="true"></i> Navigation
+                        </a>
+                        <ul>
+                            {foreach $[navigation.menu]}
+                                {if $[navigation.menu.name] == "Forum"}
+                                    <li>
+                                        <a href="$[navigation.menu.href]" target="_parent"{if $[navigation.menu.active]} class="state-active"{/if}>
+                                            <i class="far fa-comments" aria-hidden="true"></i> Forum
+                                        </a>
+                                    </li>
+                                {/if}
+                                {if $[navigation.menu.name] == "PC Gaming"}
+                                    <li>
+                                        <a href="$[navigation.menu.href]" target="_parent"{if $[navigation.menu.active]} class="state-active"{/if}>
+                                            <i class="far fa-desktop" aria-hidden="true"></i> PC Gaming
+                                        </a>
+                                    </li>
+                                {/if}
+                                {if $[navigation.menu.name] == "Console Gaming"}
+                                    <li>
+                                        <a href="$[navigation.menu.href]" target="_parent"{if $[navigation.menu.active]} class="state-active"{/if}>
+                                            <i class="far fa-trophy" aria-hidden="true"></i> Console Gaming
+                                        </a>
+                                    </li>
+                                {/if}
+                                {if $[navigation.menu.name] == "Mobile Gaming"}
+                                    <li>
+                                        <a href="$[navigation.menu.href]" target="_parent"{if $[navigation.menu.active]} class="state-active"{/if}>
+                                            <i class="far fa-mobile-alt" aria-hidden="true"></i> Mobile Gaming
+                                        </a>
+                                    </li>
+                                {/if}
+                                {if $[navigation.menu.name] == "Old-School Zone"}
+                                    <li>
+                                        <a href="$[navigation.menu.href]" target="_parent"{if $[navigation.menu.active]} class="state-active"{/if}>
+                                            <i class="far fa-gamepad" aria-hidden="true"></i> Old-School Zone
+                                        </a>
+                                    </li>
+                                {/if}
+                            {/foreach}
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+
+        {if $[news]}
+            <div class="news-container">
+                $[news]
+            </div>
+        {/if}
+
+        $[header]
+
+        <div id="wrapper">
+            <main id="content">
+                {if $[notice]}
+                    <div class="container notice">
+                        <div class="title-bar"><h2>$[notice.title]</h2></div>
+                        <div class="content">
+                            $[notice.message]
+                        </div>
+                    </div>
+                {/if}
+
+                $[content]
+
+                $[shoutbox]
+            </main>
+
+            <aside id="js-pushed-sidebar" class="sidebar">
+                <div class="sidebar__container">
+					<div class="sidebar__content sidebar__content--discord">
+                        <iframe src="https://discordapp.com/widget?id=404707515750940672&theme=dark" width="320" height="500" allowtransparency="true" frameborder="0" title="Discord"></iframe>
+                    </div>
+                </div>
+
+                <div class="sidebar__container">
+                    <div id="pb-recent-threads-title-bar" class="sidebar__title-bar">
+                        <h3>Recent Threads</h3>
+                    </div>
+                    <div id="pb-recent-threads-content" class="sidebar__content sidebar__content--recent-threads"></div>
+                </div>
+            </aside>
+        </div>
+
+        $[footer]
+
+        <div class="copyright">
+            <div class="copyright__wrapper">
+                <p><i class="far fa-copyright" aria-hidden="true"></i>&nbsp;<script>document.write(new Date().getFullYear())</script>&nbsp;&nbsp;Theme built exclusively for GamingBoards.net by <a href="http://ellimccale.com/" rel="noreferrer" target="_blank">elli&nbsp;mccale</a></p>
+                
+                <ul class="social-icons">
+                    <li>
+                        <a href="https://discord.gg/YQr8d2v" rel="noreferrer" target="_blank" class="discord" title="Discord">
+                            <i class="fab fa-discord" aria-hidden="true"></i>
+                            <span class="aria-hidden">Discord</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://twitter.com/GamingBoardsNet" rel="noreferrer" target="_blank" title="Twitter">
+                            <i class="fab fa-twitter" aria-hidden="true"></i>
+                            <span class="aria-hidden">Twitter</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.facebook.com/GamingBoards.net/" rel="noreferrer" target="_blank" title="Facebook">
+                            <i class="fab fa-facebook-f" aria-hidden="true"></i>
+                            <span class="aria-hidden">Facebook</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="sidebar__toggle-buttons">
+            <button id="js-toggle-sidebar" class="sidebar__toggle-button sidebar__toggle-button--discord" title="Toggle Sidebar" role="button">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 116.8 84" aria-hidden="true" focusable="false">
+                    <path fill="#fff" d="M102.4 10.5C88-.3 74.3 0 74.3 0l-1.4 1.6c17 5.2 24.9 12.7 24.9 12.7-10.4-5.7-20.6-8.5-30.1-9.6-7.2-.8-14.1-.6-20.2.2-.6 0-1.1.1-1.7.2-3.5.3-12 1.6-22.7 6.3-3.7 1.7-5.9 2.9-5.9 2.9s8.3-7.9 26.3-13.1l-1-1.2S28.8-.3 14.4 10.5c0 0-14.4 26.1-14.4 58.3 0 0 8.4 14.5 30.5 15.2 0 0 3.7-4.5 6.7-8.3-12.7-3.8-17.5-11.8-17.5-11.8s1 .7 2.8 1.7c.1.1.2.2.4.3.3.2.6.3.9.5 2.5 1.4 5 2.5 7.3 3.4 4.1 1.6 9 3.2 14.7 4.3 7.5 1.4 16.3 1.9 25.9.1 4.7-.8 9.5-2.2 14.5-4.3 3.5-1.3 7.4-3.2 11.5-5.9 0 0-5 8.2-18.1 11.9 3 3.8 6.6 8.1 6.6 8.1 22.1-.7 30.6-15.2 30.6-15.2 0-32.2-14.4-58.3-14.4-58.3zm-62.7 49c-5.6 0-10.2-5-10.2-11.1S34 37.3 39.7 37.3c5.7 0 10.3 5 10.2 11.1 0 6.1-4.5 11.1-10.2 11.1zm36.5 0c-5.6 0-10.2-5-10.2-11.1s4.5-11.1 10.2-11.1c5.7 0 10.2 5 10.2 11.1s-4.5 11.1-10.2 11.1z"/>
+                </svg>
+                <span class="aria-hidden">Toggle Sidebar</span>
+            </button>
+
+            <button id="js-toggle-night-mode" class="sidebar__toggle-button sidebar__toggle-button--night" title="Toggle Day/Night Mode" role="button">
+                <i class="fal fa-eclipse" aria-hidden="true"></i>
+                <span class="aria-hidden">Toggle Day/Night Mode</span>
+            </button>
+        </div>
+
+        <div id="js-menu-overlay" class="navigation-menu__overlay"></div>
+
+        <script>
+        $(document).ready(function(){
+            // Add lang attribute to `html` tag for accessibility
+            (function addLang() {
+                $('html').prop('lang', 'en-us');
+            })();
+            
+            // Toggleable night mode
+            (function nightMode() {
+                var $toggleButton = $('#js-toggle-night-mode'),
+                    $body         = $('body');
+
+                function toggleNightMode() {
+                    if (!$body.hasClass('dark')) {
+                        $body.addClass('dark');
+                        localStorage.setItem('nightmode', 'true');
+                    } else {
+                        $body.removeClass('dark');
+                        localStorage.setItem('nightmode', 'false');
+                    }
+                }
+
+                $toggleButton.on('click', toggleNightMode);
+            })();
+
+            // Add containers to ads
+            (function containAds() {
+                $('iframe#ad1').wrap('<div class="ad-banner ad-banner--top"></div>');
+                $('iframe#ad3').parent().attr('class', 'ad-banner ad-banner--bottom');
+            })();
+            
+            // Responsive primary navigation menu
+            (function responsiveMenu() {
+                var $toggleButton = $('#js-toggle-menu');
+                var $menuOverlay  = $('#js-menu-overlay');
+                var $menuSelector = $('#js-menu');
+
+                var menuIsOpen;
+
+                function toggleMenu() {
+                    menuIsOpen = !menuIsOpen;
+
+                    if (menuIsOpen) {
+                        $menuOverlay.addClass('is-active');
+                        $menuSelector.addClass('is-active');
+                    } else {
+                        $menuOverlay.removeClass('is-active');
+                        $menuSelector.removeClass('is-active');
+                    }
+                }
+
+                $toggleButton.on('click', toggleMenu);
+
+                $(document).click(function(e) {
+                    var target = e.target;
+
+                    if (!$(target).is($toggleButton) && !$(target).is($menuSelector)) {
+                        menuIsOpen = false;
+                        $menuOverlay.removeClass('is-active');
+                        $menuSelector.removeClass('is-active');
+                    }
+                });
+                
+                $(window).on('resize', function() {
+                    if (window.innerWidth >= 940) {
+                        menuIsOpen = false;
+                        $menuOverlay.removeClass('is-active');
+                        $menuSelector.removeClass('is-active');
+                    }
+                });
+            })();
+            
+            // Make navigation menu icons solid on active
+            (function activeMenuIcons() {
+                $('.navigation-menu--primary > ul > li > a').each(function() {
+                    var $this = $(this);
+
+                    if ($this.is('.state-active')) {
+                        $this.find('i').removeClass('far').addClass('fas');
+                    }
+                });
+            })();
+            
+            // Navigation menu dropdowns
+            (function dropdownMenu() {
+                var $dropdownSibling = $('.navigation-menu--secondary > ul > li > a');
+                var $dropdown        = $('.navigation-menu__dropdown');
+
+                $dropdown.hide().removeClass('fallback');
+
+                $dropdownSibling.click(function() {
+                    $(this).find('i.fa-caret-down').toggleClass('animate-toggle');
+                    $(this).next($dropdown).slideToggle('fast');
+                });
+
+                // Collapse dropdown if anywhere else on the document is clicked
+                $(document).click(function(e) {
+                    var target = e.target;
+
+                    if (!$(target).is($dropdownSibling) && !$(target).parents().is($dropdownSibling)) {
+                        $dropdownSibling.find('i.fa-caret-down').removeClass('animate-toggle');
+                        $dropdown.slideUp('fast');
+                    }
+                });
+
+                // Stop dropdown from collapsing when clicked on itself
+                $dropdown.click(function(e) {
+                    e.stopPropagation();
+                });
+            })();
+
+            // Page reflow behaviors
+            (function reflowPage() {
+                // Calculate padding on angled columns
+                var $angledColumns = $('.boards__item-col--latest, .boards__item-col--posts, .stats__col--members');
+
+                function calcPadding(selector) {
+                    selector.each(function() {
+                        var cellHeight = $(this).outerHeight();
+                        var radians    = 30 * (Math.PI / 90); // CSS skew on columns is 30°
+                        var adjacent   = cellHeight / Math.tan(radians);
+                        var newPadding = adjacent;
+
+                        if (window.innerWidth <= 1199) {
+                            newPadding += 20; // Add 15px on small screens
+                        } else {
+                            newPadding += 30; // Add 30px on larger screens
+                        }
+
+                        $(this).css({ 'padding-left' : newPadding + 'px' });
+                    });
+                }
+
+                // Wait for the sidebar classes to load before calculating
+                setTimeout(function() {
+                    calcPadding($angledColumns);
+                }, 0);
+
+                $(window).on('resize', function() {
+                    calcPadding($angledColumns);
+                });
+
+                // Recalculate the width of poll answer bars, only in threads
+                function calcPolls() {
+                    if (document.location.href.match(/\/thread\/\d/)) {
+                        var $poll = $('.poll.show');
+
+                        if ($poll.length) {
+							$poll.data('poll').determineMaxWidth();
+							$poll.data('poll')._update();
+                        }
+                    }
+                }
+
+                // Toggle sidebar
+                var $toggleButton  = $('#js-toggle-sidebar');
+                var $pushSelectors = $('#content, #js-pushed-sidebar');
+
+                var sidebarIsOpen;
+
+                var openSidebarOnLoad = true;
+
+                function toggleSidebar() {
+                    sidebarIsOpen = !sidebarIsOpen;
+
+                    if ($pushSelectors.hasClass('open-on-load')) {
+                        $pushSelectors.removeClass('open-on-load');
+                    }
+
+                    if (sidebarIsOpen) {
+                        $pushSelectors.addClass('is-open');
+                        localStorage.setItem('sidebar', 'opened');
+                    } else {
+                        $pushSelectors.removeClass('is-open');
+                        localStorage.setItem('sidebar', 'closed');
+                    }
+
+                    // Calculate padding and polls when sidebar animation has finished
+                    setTimeout(function() {
+                        calcPadding($angledColumns);
+                        calcPolls();
+                    }, 300); // Sidebar animation is 0.3s
+                }
+
+                if (localStorage.getItem('sidebar') === null) {
+                    sidebarIsOpen = openSidebarOnLoad;
+                } else {
+                    if (localStorage.getItem('sidebar') === 'opened') {
+                        sidebarIsOpen = true;
+                    } else {
+                        sidebarIsOpen = false;
+                    }
+                }
+
+                if (sidebarIsOpen) {
+                    $pushSelectors.addClass('is-open open-on-load');
+                    calcPolls();
+                }
+
+                $toggleButton.on('click', toggleSidebar);
+            })();
+
+            // Unbind participated threads dialog on mobile
+            (function participatedThreads() {
+                if (window.innerWidth < 768) {
+                    $('.recent-threads-button').unbind('click');
+                }
+            })();
+            
+            // Modifications to the News Slider
+            (function modNewsSlider() {
+                var $newsNav       = $('#news .nav');
+				var $newsTitle     = $('#news .nav .title');
+				var $newsItemPanel = $('#news .items');
+				var $newsItemSlide = $('#news .items .itemSlide');
+
+                $newsTitle.removeAttr('style');
+                $newsItemPanel.css({'width': 'calc(100% - ' + ($newsNav.outerWidth() + 1) + 'px)'});
+                $newsItemSlide.css({'width': (100 / $newsItemSlide.length) + '%'});
+            })();
+
+            // Modifications to the Footer
+            (function modFooter() {
+                var $footer        = $('.c-footer');
+                var $footerWrapper = '.c-footer__wrapper';
+
+                $footer.wrapInner('<div class="c-footer__wrapper"></div>');
+
+                $('.ad-banner--bottom').prependTo($footerWrapper);
+                $('.container.stats').prependTo($footerWrapper);
+            })();
+            
+            // Remove double angle quotes from pagination
+            (function removeAngleQuotes() {
+                var $pageNext = $('.ui-pagination-next > a');
+                var $pagePrev = $('.ui-pagination-prev > a');
+
+                $pageNext.text($pageNext.text().replace('»', ''));
+                $pagePrev.text($pagePrev.text().replace('«', ''));
+            })();
+
+            // Replace default icons with Font Awesome glyphs
+            (function replaceDefaultIcons() {
+                // Board on/off icons
+                $('.board.item.redirect td.icon img').replaceWith('<i class="fas fa-sign-out-alt" aria-hidden="true"></i>');
+                $('.board.item.new td.icon img').replaceWith('<i class="fas fa-folder" aria-hidden="true"></i>');
+                $('.board.item td.icon img').replaceWith('<i class="far fa-folder" aria-hidden="true"></i>');
+
+                // Icons that need to be updated on page change
+                function paginateIcons() {
+                    // Post/message interaction icons
+                    $('.button:not(.o-npc-button) .status > img').replaceWith('<i class="fas fa-cog" title="Options"></i>');
+                    $('.ui-search .search-filters-button .icon > img').replaceWith('<i class="fas fa-search" title="Search"></i>');
+
+                    // Thread/conversation icons
+                    $('.thread.item.announcement td.icon img').replaceWith('<i class="fas fa-bullhorn" aria-hidden="true"></i>');
+                    $('.thread.item.sticky td.icon img').replaceWith('<i class="far fa-sticky-note" aria-hidden="true"></i>');
+                    $('.thread.item td.icon img').replaceWith('<i class="far fa-star" aria-hidden="true"></i>');
+                    $('.conversation.item.new td.icon img').replaceWith('<i class="fas fa-envelope" aria-hidden="true"></i>');
+                    $('.conversation.item td.icon img').replaceWith('<i class="far fa-envelope-open" aria-hidden="true"></i>');
+
+                    // Thread status icons
+                    var lockIcon = ('<i class="fas fa-lock" aria-hidden="true"></i>');
+                    var bookmarkIcon = ('<i class="far fa-bookmark" aria-hidden="true"></i>');
+                    var pollIcon = ('<i class="far fa-chart-bar" aria-hidden="true"></i>');
+
+                    function replaceThreadIcons(oldIcon, newIcon) {
+                        $(oldIcon).each(function() {
+                            var $this = $(this);
+
+                            if (!$this.find('i').length) {
+                                $this.append(newIcon);
+                                $this.find('img').remove();
+                            }
+                        });
+                    }
+
+                    replaceThreadIcons('.lock_icon', lockIcon);
+                    replaceThreadIcons('.bookmark_icon', bookmarkIcon);
+                    replaceThreadIcons('.poll_icon', pollIcon);
+
+                    // Checkmark icon
+                    var $checkContainer = $('.ui-poll .results tr td .select-box');
+
+                    $checkContainer.each(function() {
+                        var $this = $(this);
+
+                        if (!$this.find('i').length) {
+                            $this.append('<i class="fas fa-check" aria-hidden="true"></i>');
+                            $this.children('img').remove();
+                        }
+                    });
+                }
+
+                paginateIcons();
+                pb.events.on('afterSearch', paginateIcons);
+            })();
+        });
+        </script>
+    </body>
+</html>

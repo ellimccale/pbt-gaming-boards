@@ -1,0 +1,31 @@
+{foreach $[thread]}
+	<tr id="$[thread.content_id]" class="$[thread.content_class]">
+		<td class="icon">$[thread.icon]</td>
+		<td class="checkbox clickable">$[thread.checkbox]</td>
+		<td class="main clickable" title="$[thread.short_content]">
+            $[thread.labels]
+            <span class="link target">
+                $[thread.icons]
+                $[thread]
+            </span>
+            <span class="created-by" >by <span data-item="created-by">$[thread.created_by]</span><span class="break">, </span>$[thread.created_on]</span>
+            {if $[thread.pagination]}<div class="ui-micro-pagination">$[thread.pagination]</div>{/if}
+		</td>
+        <td class="replies-views">
+        	<strong>$[thread.replies_count]</strong> repl{if $[thread.num_posts] != 2}ies{else}y{/if}<br>
+            <strong>$[thread.views]</strong> view{if $[thread.views] != 1}s{/if}
+        </td>
+        <td class="avatar">
+            <span data-item="latest">$[thread.last_post.created_by.avatar_small]</span>
+        </td>
+		<td class="latest">
+            <span data-item="latest">$[thread.last_post.created_by]</span><br>
+            $[thread.last_post.created_on]
+        </td>
+	</tr>
+	<tr class="spacer"><td colspan="6"></td></tr>
+{/foreach}
+
+{if !$[thread]}
+	<tr><td class="center" colspan="6">No threads were found.</td></tr>
+{/if}

@@ -1,0 +1,53 @@
+<div class="container show-user">
+    <div class="content">
+        <div class="show-user__cover-image{foreach $[user.custom_field]}{if $[user.custom_field.name] == 'Profile Cover Image'} show-user__cover-image--has-image{/if}{/foreach}" style="{foreach $[user.custom_field]}{if $[user.custom_field.name] == 'Profile Cover Image'}background-image: url('$[user.custom_field.value]');{/if}{if $[user.custom_field.name] == 'Profile Cover Position'}background-position: $[user.custom_field.value];{/if}{if $[user.custom_field.name] == 'Profile Cover Repeat'}background-repeat: $[user.custom_field.value]{/if}{/foreach}">
+            <div class="ui-tabMenu">
+                <ul class="ui-helper-clearfix">
+                    {foreach $[menu]}<li{if $[menu.active]} class="ui-active"{/if}><a href="$[menu.href]">$[menu.text]</a></li>{/foreach}
+                </ul>
+            </div>
+        </div>
+        <div class="show-user__user">
+            <div class="show-user__user-avatar">$[user.avatar]</div>
+            <div class="show-user__user-fields">
+                <span class="username" style="color: $[user.color];">
+                    $[user.name]
+                    {if $[user.is_online]}<span class="online" title="User is online"></span>{/if}
+                </span>
+                {if $[user.group]}
+                    <span class="user-group">$[user.group.name]</span>
+                    <span class="user-stars">$[user.group.stars]</span>
+                {else}
+                    <span class="user-group">$[user.rank.name]</span>
+                    <span class="user-stars">$[user.rank.stars]</span>
+                {/if}
+            </div>
+            <div class="show-user__user-options controls">
+                <!-- Do not show options if the user is viewing their own profile, or admin's profile -->
+                {if $[user.id] != $[current_user.id] && $[user.id] != 1}
+                    $[options]
+                {/if}
+                $[send_message_button]
+                $[edit_profile_button]
+                $[follow_button]
+                $[invite_button]
+            </div>
+      </div>
+      <div class="show-user__content">
+            $[content]
+      </div>
+    </div>
+</div>
+  
+<script>
+$(document).ready(function() {
+    // Remove custom profile fields container if it is empty
+    (function removeEmptyContainer() {
+        var $customFields = $('#js-custom-fields');
+
+        if ( !$.trim($customFields.html()).length ) {
+            $customFields.remove();
+        }
+    })();
+});
+</script>

@@ -1,0 +1,43 @@
+{foreach $[message]}
+	<tr id="$[message.content_id]" class="$[message.content_class]">
+		<td>
+			<table>
+				<tr>
+					<td class="left-panel" rowspan="2">
+						$[message.created_by.miniprofile]
+					</td>
+					<td class="content">
+						<div class="content-head">
+							<div class="info">
+								<span class="date"><i class="far fa-clock" aria-hidden="true"></i> Sent $[message.created_on]</span>
+								{if $[message.how_posted]}
+									<span class="post-method">via $[message.how_posted]</span>
+								{/if}
+							</div>
+							<div class="controls">
+								<a href="$[message.quote_button.href]" class="$[message.quote_button.class]" title="Quote Message" role="$[message.quote_button.role]">
+                                    <i class="fas fa-quote-right" aria-hidden="true"></i>
+                                    <span class="aria-hidden">Quote Message</span>
+                                </a>
+								$[message.select_options]
+							</div>
+						</div>
+						<div class="message">$[message.body]</div>
+					</td>
+				</tr>
+				<tr>
+					<td class="foot">
+						{if $[message.created_by.signature]}
+							<div class="signature">$[message.created_by.signature]</div>
+						{/if}
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr class="spacer"><td></td></tr>
+{/foreach}
+
+{if !$[message]}
+	<tr><td class="center">No messages were found.</td></tr>
+{/if}

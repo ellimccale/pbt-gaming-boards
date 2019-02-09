@@ -1,0 +1,20 @@
+<div class="$[microprofile_class]">
+    <div class="avatar">
+        $[user.avatar_small]
+    </div>
+    <div class="info">
+        <div class="nowrap">
+            <span class="name">$[user]</span>
+            <span class="small">($[user.username])</span>
+        </div>
+        {if $[user.is_deleted]}
+            <em>Deleted Member</em>
+        {elseif $[user.group]}
+            <div class="nowrap group-overflow">$[user.group.name]</div>
+            $[user.group.stars]
+        {else}
+            $[user.rank.name]<br>
+            $[user.rank.stars]
+        {/if}
+    </div>
+</div>

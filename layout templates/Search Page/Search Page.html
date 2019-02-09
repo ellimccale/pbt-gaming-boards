@@ -1,0 +1,116 @@
+<section class="container search">
+    <div class="title-bar">
+        <h2>Search</h2>
+    </div>
+    <div class="content">
+        $[form.header]
+        <div class="header content-box"><strong>Search</strong> by filling out the fields below as much or as little as you need. Then click Search.</div>
+        <div class="row">
+            <div id="what" class="options-container content-box">
+                <table>
+                    <tr>
+                        <th colspan="2"><strong>What</strong> to search...</th>
+                    </tr>
+                    <tr>
+                        <td class="option">with <strong>at least one</strong> of the words</td>
+                        <td class="input">$[form.what_at_least_one.input]</td>
+                    </tr>
+                    <tr>
+                        <td class="option">with <strong>all</strong> the words</td>
+                        <td class="input">$[form.what_all.input]</td>
+                    </tr>
+                    <tr>
+                        <td class="option">with the <strong>phrase</strong></td>
+                        <td class="input">$[form.what_exact_phrase.input]</td>
+                    </tr>
+                    <tr>
+                        <td class="option"><strong>without</strong> the words</td>
+                        <td class="input">$[form.what_without.input]</td>
+                    </tr>
+                </table>
+            </div>
+            <div id="where" class="options-container content-box">
+                <table>
+                    <tr>
+                        <th colspan="2"><strong>Where</strong> to search...</th>
+                    </tr>
+                    <tr>
+                        <td class="option">where the <strong>thread title</strong> contains</td>
+                        <td class="input">$[form.where_thread_title.input]</td>
+                    </tr>
+                    <tr>
+                        <td class="option">in the <strong>board</strong></td>
+                        <td class="input">$[form.where_board_subboard_placeholder.input]</td>
+                    </tr>
+                    <tr>
+                        <td class="option">in the <strong>category</strong></td>
+                        <td class="input">$[form.where_category_placeholder.input]</td>
+                    </tr>
+                    <tr>
+                        <td class="option"><strong>without</strong> searching the boards</td>
+                        <td class="input">$[form.where_without_placeholder.input]</td>
+                    </tr>
+                </table>
+            </div>
+            <div id="when" class="options-container content-box">
+                <table>
+                    <tr>
+                        <th colspan="2"><strong>When</strong> to search...</th>
+                    </tr>
+                    <tr>
+                        <td class="option">posted <strong>within the last</strong></td>
+                        <td class="input">$[form.when_days.input] days $[form.when_hours.input] hours</td>
+                    </tr>
+                    <tr>
+                        <td class="option"><strong>between</strong> the dates</td>
+                        <td class="input">$[form.when_between_start.input] to $[form.when_between_end.input]</td>
+                    </tr>
+                    <tr>
+                        <td class="option">only on the <strong>exact date</strong></td>
+                        <td class="input">$[form.when_exact_date.input]</td>
+                    </tr>
+                    <tr>
+                        <td class="option"><strong>before</strong> the date</td>
+                        <td class="input">$[form.when_before_date.input]</td>
+                    </tr>
+                </table>
+            </div>
+            <div id="who" class="options-container content-box">
+                <table>
+                    <tr>
+                        <th colspan="2"><strong>Who</strong> to search...</th>
+                    </tr>
+                    <tr>
+                        <td class="option">by <strong>at least one</strong> of the members</td>
+                        <td class="input">$[form.who_at_least_one_placeholder.input]</td>
+                    </tr>
+                    <tr>
+                        <td class="option">posts <strong>made by</strong></td>
+                        <td class="input">$[form.who_only_made_by.input]</td>
+                    </tr>
+                    <tr>
+                        <td class="option"><strong>except</strong> posts by the members</td>
+                        <td class="input">$[form.who_except_placeholder.input]</td>
+                    </tr>
+                    <tr>
+                        <td class="option">by the <strong>member group</strong></td>
+                        <td class="input">$[form.who_member_group_placeholder.input]</td>
+                    </tr>
+                    <tr>
+                        <td class="option">in <strong>threads created by</strong></td>
+                        <td class="input">$[form.who_threads_created_by_placeholder.input]</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div id="how" class="options-container content-box input">
+            <strong>How</strong> to search...<br> $[form.display_as.input]
+        </div>
+        $[captcha]
+        <div class="footer content-box">
+            <span id="$[transcription.id]"></span>
+            $[form.search.button]
+        </div>
+        $[form.footer]
+    </div>
+</section>

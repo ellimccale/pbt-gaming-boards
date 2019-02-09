@@ -1,0 +1,47 @@
+<div class="container posts">
+    <div class="title-bar">
+         <h2>Search Results</h2>
+    </div>
+    <div class="control-bar ui-helper-clearfix $[scroll_class]">
+        $[search]
+        <div class="controls">
+            $[selection_menu]
+            $[action_menu]
+        </div>
+        $[pagination]
+    </div>
+    <div class="content">
+        <table class="list">
+            <tbody class="$[list_class]">
+                $[post_list]
+            </tbody>
+        </table>
+    </div>
+</div>
+  
+<script>
+$(document).ready(function() {
+    // Move post controls to footer on mobile
+    (function postControls() {
+        function moveControls() {
+            $('.post.item').each(function() {
+                var $this = $(this);
+
+                var $contentHead = $this.find('.content-head');
+                var $contentFoot = $this.find('.foot');
+                var $controls    = $this.find('.controls');
+        
+                if (window.innerWidth < 520) {
+                    $controls.appendTo($contentFoot);
+                } else {
+                    $controls.appendTo($contentHead);
+                }
+            });
+        }
+  
+        moveControls();
+        pb.events.on('afterSearch', moveControls);
+        $(window).on('resize', moveControls);
+    })();
+});
+</script>

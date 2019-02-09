@@ -1,0 +1,4 @@
+.rtpoplink { color: red; }
+.rtpopdiv { padding: 2px; cursor: pointer; }
+.rtpopdivhover { padding: 2px; background-color: #cccccc; cursor: pointer; }
+.recent-avatar { width: 25px; }

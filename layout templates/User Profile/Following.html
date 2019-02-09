@@ -1,0 +1,23 @@
+<div class="content-box">
+	<table class="following list">
+		<colgroup>
+			<col>
+			<col class="time-container">
+		</colgroup>
+		<thead>
+			<tr class="heading">
+				<th colspan="2">
+					{if $[total_following]}
+						This member is following $[following_link]. Their activity is displayed below.
+					{else}
+						This member is not following any other members.
+					{/if}
+				</th>
+			</tr>
+		</thead>
+		<tbody class="$[activity_list_class]">
+			$[activity_list]
+		</tbody>
+	</table>
+	$[more_button]
+</div>

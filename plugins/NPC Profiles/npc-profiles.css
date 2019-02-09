@@ -1,0 +1,383 @@
+/* Controls
+ * ====================================================== */
+
+ .o-npc-button {
+    padding: 7px 10px 5px !important;
+}
+
+.o-npc-button .o-npc-icon-on {
+    display: none;
+}
+
+.o-npc-button .o-npc-icon-load {
+    display: none;
+}
+
+.has-npc .o-npc-button {
+    border-color: #00bbd4;
+}
+
+.dark .has-npc .o-npc-button {
+    border-color: #00bbd4;
+}
+
+.has-npc .o-npc-button .o-npc-icon-on {
+    color: #00bbd4;
+    display: block;
+}
+
+.dark .has-npc .o-npc-button .o-npc-icon-on {
+    color: #dedede;
+}
+
+.has-npc .o-npc-button .o-npc-icon-off {
+    display: none;
+}
+
+.is-loading-npc .o-npc-button .o-npc-icon-on {
+    display: none;
+}
+
+.is-loading-npc .o-npc-button .o-npc-icon-off {
+    display: none;
+}
+
+.is-loading-npc .o-npc-button .o-npc-icon-load {
+    display: block;
+}
+
+
+/* Menu
+ * ====================================================== */
+
+.o-npc-menu {
+    position: absolute;
+    max-width: none;
+    display: none;
+}
+
+
+/* Menu Items
+ * ====================================================== */
+
+.o-npc-menu .o-npc-menu__item > .o-npc-menu__link {
+    background-position: -1000px -1000px;
+    background-repeat: no-repeat;
+}
+
+.o-npc-menu .o-npc-menu__item.ui-menu-has-sub-menu.is-selected > .o-npc-menu__link {
+    background-position: -1000px -1000px;
+}
+
+.o-npc-menu .o-npc-menu__item.is-selected > .o-npc-menu__link {
+    font-weight: bold;
+    background-position: 4px center;
+}
+
+.o-npc-menu .o-npc-menu__submenu.is-visible {
+    display: block;
+}
+
+
+/* Avatars
+ * ====================================================== */
+
+.o-npc-avatar .o-npc-avatar__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #000;
+    color: #fff;
+    font: bold 8px Verdana,Arial;
+    text-transform: uppercase;
+    text-align: center;
+    z-index: 1;
+}
+
+
+/* Profiles
+ * ====================================================== */
+
+.o-npc-profile {
+    margin-top: 0 !important;
+}
+
+@media only screen and (min-width: 992px) {
+    .o-npc-profile .show-user__summary-status {
+        padding-bottom: 0;
+    }
+}
+
+
+/* Mini Profiles
+ * ====================================================== */
+
+.has-npc .mini-profile {
+    display: none;
+}
+
+.has-npc .o-npc-mini {
+    display: block;
+}
+
+
+/* Signature
+ * ====================================================== */
+
+.has-npc .signature {
+    display: none !important;
+}
+
+.has-npc .o-npc-signature {
+    display: block !important;
+}
+
+.has-npc .o-npc-signature .guest {
+    font-weight: bold;
+}
+
+
+/* Quotes
+ * ====================================================== */
+
+.quote.has-npc > .quote_body > .quote_avatar_container {
+    display: none;
+}
+
+.quote.has-npc > .quote_body > .quote_avatar_container.is-npc-element {
+    display: block;
+}
+
+.quote.has-npc > .quote_body > .quote_header {
+    display: none;
+}
+
+.quote.has-npc > .quote_body > .quote_header.is-npc-element {
+    display: block;
+}
+
+
+/* Micro Profiles
+ * ====================================================== */
+
+.o-npc-micro {
+    margin: 0 3px 3px 0;
+    overflow: hidden;
+    font-size: 13px;
+    padding: 5px;
+    width: 200px;
+    height: 50px;
+    position: relative;
+    text-align: left;
+}
+
+.o-npc-micro .info {
+    overflow: visible;
+}
+
+.o-npc-micro .avatar {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+}
+
+.o-npc-micro .group-overflow {
+    overflow: hidden;
+}
+
+
+/* Member List
+ * ====================================================== */
+
+.o-npc-list .o-npc-list__column {
+    text-align: left;
+}
+
+.o-npc-list .o-npc-list--name {
+    border-left-width: 1px;
+}
+
+.o-npc-list .o-npc-list--avatar {
+    width: 55px;
+    display: none;
+}
+
+.o-npc-list__item .o-npc-avatar {
+    position: relative;
+    max-width: 32px;
+    max-height: 32px;
+}
+
+.o-npc-list__item .avatar-wrapper {
+    width: 32px;
+    height: 32px;
+}
+
+.o-npc-list__item .avatar-wrapper > img {
+    max-width: 32px;
+    max-height: 32px;
+}
+
+.o-npc-list__item .o-npc-avatar .o-npc-avatar__overlay {
+    font-size: 6px;
+}
+
+@media only screen and (min-width: 768px) {
+    .o-npc-list .o-npc-list--avatar {
+        display: table-cell;
+    }
+
+    .o-npc-list .o-npc-list--name {
+        border-left-width: 0;
+    }
+}
+
+
+/* PBN Bar
+ * ====================================================== */
+
+#v-npc-pbn {
+    display: inline-block;
+    float: left;
+    padding: 0px 3px;
+    margin-top: 3px;
+}
+
+#v-npc-pbn > img {
+    max-height: 16px;
+    max-width: 16px;
+}
+
+#v-npc-pbn > .o-npc-icon-on {
+    display: none;
+}
+
+#v-npc-pbn.is-active > .o-npc-icon-on {
+    display: inline;
+}
+
+#v-npc-pbn.is-active > .o-npc-icon-off {
+    display: none;
+}
+
+
+/* NPC Auto Select
+ * ====================================================== */
+
+#v-npc-pbn-micro {
+    position: fixed;
+    right: 10px;
+    bottom: 28px;
+    z-index: 1005;
+}
+
+#v-npc-pbn-micro.is-hidden {
+    display: none;
+}
+
+#v-npc-pbn-micro.is-hidden.is-active {
+    transition: all 0.25s ease 0s;
+    opacity: 0;
+    display: block;
+}
+
+#v-npc-pbn-micro.is-hidden.is-active:hover {
+    opacity: 1;
+}
+
+#v-npc-pbn-micro .o-npc-micro {
+    overflow: visible;
+}
+
+#v-npc-pbn-micro.is-active .o-npc-micro--control {
+    display: none;
+}
+
+#v-npc-pbn-micro .o-npc-micro--control .o-npc-controls {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    margin: 5px;
+    width: 50px;
+    height: 50px;
+}
+
+#v-npc-pbn-micro .o-npc-micro--control .o-npc-button {
+    padding: 0 !important;
+    margin: 0;
+    border-width: 0;
+    opacity: 0;
+    border-radius: 0;
+    height: 100%;
+    width: 100%;
+}
+
+#v-npc-pbn-micro .o-npc-micro--control .info {
+    padding: 3px 0;
+}
+
+#v-npc-pbn-micro .has-animation {
+    transition: all 0.25s ease 0s;
+}
+
+#v-npc-pbn-micro .o-npc-avatar {
+    cursor: pointer;
+}
+
+#v-npc-pbn-micro .o-npc-micro--npc .o-npc-avatar:hover .o-npc-avatar__overlay--npc {
+    top: 100%;
+}
+
+#v-npc-pbn-micro .o-npc-avatar .o-npc-avatar__close {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+#v-npc-pbn-micro .o-npc-avatar:hover .o-npc-avatar__close {
+    height: 100%;
+}
+
+#v-npc-pbn-micro .o-npc-avatar .o-npc-avatar__close-inner {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+#v-npc-pbn-micro .o-npc-avatar .o-npc-avatar__close .o-npc-avatar__x {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    color: #fff;
+    font-size: 20px;
+    background-color: rgba(0,0,0,0.5);
+    text-transform: uppercase;
+    text-align: center;
+}
+
+#v-npc-pbn-micro .o-npc-avatar .o-npc-avatar__close .o-npc-avatar__x > span:after {
+    content: "x";
+}
+
+#v-npc-pbn-micro .o-npc-avatar .o-npc-avatar__close .o-npc-avatar__overlay {
+    position: absolute;
+    top: auto;
+    left: 0;
+    bottom: 0;
+    background-color: #f00;
+}

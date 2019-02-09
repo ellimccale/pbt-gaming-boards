@@ -1,0 +1,41 @@
+<div class="$[shoutbox_class] container full">
+    <div class="title-bar"><h2>Shoutbox</h2></div>
+    <div class="content">
+        {if $[welcome_message]}
+            <div class="pad-all-double content-box shoutbox_welcome_message">
+                $[welcome_message]
+            </div>
+        {/if}
+        <div class="shoutbox_container orientation-$[reply_box_position] {if !$[can.post]}no-post{/if}">
+            <div class="$[shoutbox_posts_class]" style="height: $[height];" aria-live="polite">
+                {if $[shoutbox_posts]}
+                    $[shoutbox_posts]
+                {else}
+                    <b>There are no posts here.{if $[can.post]} Start the conversation {if $[reply_box_position] == 'bottom'}below{else}above{/if}.{/if}</b>
+                {/if}
+            </div>
+            {if $[can.post]}
+                <div class="shoutbox_form_container">
+                    $[shoutbox_form.header]
+                    <div class="shoutbox_name">
+                        {if $[shoutbox_form.guest_name.input]}
+                            Shout as: $[shoutbox_form.guest_name.input]
+                        {else}
+                            Shouting as: $[current_user]
+                        {/if}
+                    </div>
+                    <div class="shoutbox_form content-box">
+                        $[shoutbox_error]
+                        $[refresh_button]
+                        $[reply_box_buttons]
+                        $[shoutbox_form.message.input]
+                        $[message_character_count]
+                        $[post_button]
+                        $[cancel_button]
+                    </div>
+                    $[shoutbox_form.footer]
+                </div>
+            {/if}
+        </div>
+    </div>
+</div>
