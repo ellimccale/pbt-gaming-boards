@@ -2613,7 +2613,7 @@ span.pd-post-reactions-dialog-item .fa-laugh {
 /* Micro Profiles
  * ====================================================== */
 
-.micro-profile { background: @container_background_color_1; width: 200px; height: 50px; margin-top: 10px; margin-left: 10px; border: 1px solid @gray_2; padding: 10px; overflow: hidden; position: relative; .box-sizing(content-box); }
+.micro-profile { background: @container_background_color_1; width: 200px; height: 50px; margin-top: 10px; margin-left: 10px; border: 1px solid @gray_2; padding: 10px; color: @container_text_color_1; overflow: hidden; position: relative; .box-sizing(content-box); }
 
 .micro-profile .avatar { width: 50px; height: 50px; display: block; position: absolute; top: 10px; }
 .micro-profile .avatar-wrapper::after { content: ''; width: 100%; height: 100%; border-radius: 50%; position: absolute; top: 0; left: 0; -webkit-box-shadow: inset 0 0 1px 1px rgba(0,0,0,0.1); box-shadow: inset 0 0 1px 1px rgba(0,0,0,0.1); }
@@ -2621,7 +2621,7 @@ span.pd-post-reactions-dialog-item .fa-laugh {
 .micro-profile .info { width: 135px; text-align: left; overflow: hidden; position: absolute; top: 7px; left: 75px; }
 .micro-profile .info input { width: 130px; margin-top: 0; }
 
-.dark .micro-profile { background-color: @blue_3; border-color: @blue_4; }
+.dark .micro-profile { background-color: @blue_3; border-color: @blue_4; color: @gray_2; }
 .dark .micro-profile .avatar-wrapper::after { -webkit-box-shadow: inset 0 0 1px 1px rgba(255,255,255,0.4); box-shadow: inset 0 0 1px 1px rgba(255,255,255,0.4); }
 
 .user-search-box { margin-top: 5px; margin-left: 0; }
@@ -2634,12 +2634,14 @@ span.pd-post-reactions-dialog-item .fa-laugh {
 
 .user-search-selectlist { z-index: 99999; }
 .user-search-selectlist .content { padding: 1px 0; cursor: pointer; }
-.user-search-selectlist .micro-profile { margin: 1px auto; display: inherit; }
-.user-search-selectlist .micro-profile .info { width: 200px; }
+.user-search-selectlist .micro-profile { margin: 5px auto; display: inherit; }
+.user-search-selectlist .ui-selectlist-item.state-current { background-color: transparent; }
 
-.user-search-displaybox { min-width: 250px; z-index: 99999; }
-.user-search-displaybox .control-bar { border: none; }
+.user-search-displaybox { background-color: @container_background_color_1; border-color: @container_outer_border_color; min-width: 250px; color: @container_text_color_1; z-index: 99999; }
+.user-search-displaybox .control-bar { margin-bottom: 0; border: none; padding-left: 8px; padding-right: 8px; }
 .user-search-displaybox .control-bar .ui-pagination { padding: 5px; display: inherit; }
+
+.dark .user-search-displaybox { background-color: @blue_3; border-color: @blue_4; color: @gray_2; }
 
 .list-count .microprofile-holder { height: 82px; }
 
