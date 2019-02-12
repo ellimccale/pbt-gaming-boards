@@ -17,29 +17,24 @@ $[tag.html.open]
              * jQuery UI Dialog changes
              * Has to be in `<head>` to load in the right order.
              *
-             * 1. Create darkened overlay behind dialogs
-             * 2. Offset positioning for top bar
+             * 1. 220 = Approximation of height of dialog padding, title bar, and footer
+             * 2. Manually set `max-height` of dialog content because CSS `vh` unit
+             *    doesn't work as I'd like it to on mobile browsers
+             * 3. Create darkened overlay behind dialogs
+             * 4. Offset positioning for top bar
              */
             (function darkenDialogOverlay() {
                 var open_ref = $.ui.dialog.prototype.open;
-
-                $.ui.dialog.prototype.open = function(){
-                    this.options.modal = true; // 1
-                    this.options.position = { offset: "0 25px" }; // 2
-                    open_ref.apply(this, arguments);
-                }
-            })();
-
-            /**
-             * Manually set `max-height` of dialog content because CSS `vh`
-             * unit doesn't work as I'd like it to on mobile browsers.
-             *
-             * 1. Approximation of height of dialog padding, title bar, and footer
-             */
-            (function setDialogHeight() {
                 var trueViewportHeight = window.innerHeight - 220; // 1
 
-                $('.ui-dialog div.ui-dialog-content').css('max-height', (trueViewportHeight + 'px'));
+                $.ui.dialog.prototype.open = function(){
+                    $('.ui-dialog div.ui-dialog-content').css('max-height', (trueViewportHeight + 'px')); // 2
+
+                    this.options.modal = true; // 3
+                    this.options.position = { offset: "0 25px" }; // 4
+
+                    open_ref.apply(this, arguments);
+                }
             })();
         });
         </script>
