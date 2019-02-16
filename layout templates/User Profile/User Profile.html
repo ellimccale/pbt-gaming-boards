@@ -8,12 +8,12 @@
             </div>
         </div>
         <div class="show-user__user">
-            <div class="show-user__user-avatar">$[user.avatar]</div>
+            <div class="show-user__user-avatar">
+                $[user.avatar]
+                {if $[user.is_online]}<span class="online" title="User is online"></span>{/if}
+            </div>
             <div class="show-user__user-fields">
-                <span class="username" style="color: $[user.color];">
-                    $[user.name]
-                    {if $[user.is_online]}<span class="online" title="User is online"></span>{/if}
-                </span>
+                <span class="username" style="color: $[user.color];">$[user.name]</span>
                 {if $[user.group]}
                     <span class="user-group">$[user.group.name]</span>
                     <span class="user-stars">$[user.group.stars]</span>

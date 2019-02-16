@@ -3,7 +3,7 @@
  * Theme URI:  http://gaming-boards-theme.proboards.com
  * Author:     Elli
  * Author URI: http://ellimccale.com/
- * Version:    2.0.1
+ * Version:    2.1.0
  */
 
 
@@ -1594,12 +1594,12 @@ table.list .last-edited { color: @timestamp_color; }
 .boards__item { .flex-display(); .flex-wrap(wrap); }
 .boards__item + .boards__item { margin-top: 15px; }
 
-.boards__item-row { max-width: 100%; .flex-display(); .flex-basis(100%); }
+.boards__item-row { max-width: 100%; .flex-display(); .flex-shrink(0); .flex-basis(100%); }
 .boards__item-row--title { margin-bottom: 5px; .flex-direction(row-reverse); }
 .boards__item-row--sub-boards { display: none; }
 
-.boards__item-col { background-color: @gray_4; border: 1px solid @gray_2; padding: 13px 15px 15px; position: relative; .flex-display(); .flex-grow(0); .flex-shrink(0); .flex-basis(auto); .align-items(center); }
-.boards__item-col p { font-size: 1.4rem; }
+.boards__item-col { background-color: @gray_4; border: 1px solid @gray_2; padding: 13px 15px 15px; position: relative; .flex-display(); .flex-shrink(0); .flex-basis(0); .align-items(center); }
+.boards__item-col p { font-size: 1.4rem; .flex-basis(100%); }
 .boards__item-col--icon { background-color: @gray_2; max-width: 50px; border: 0; padding: 0 !important; text-align: center; position: relative; .flex-basis(50px); .justify-content(center); .transition(background-color 0.3s ease); }
 .boards__item-col--icon::before { content: ''; background-color: @electric_blue; width: 0; height: 100%; position: absolute; top: 0; left: 0; .transition(width 0.2s ease); }
 .boards__item-col--icon i { font-size: 2.2rem; color: @gray_4; position: relative; z-index: 1; }
@@ -1660,9 +1660,6 @@ table.list .last-edited { color: @timestamp_color; }
   .boards__item-col--name { height: 60px; padding-top: 12px !important; padding-bottom: 14px !important; }
   .boards__item-col--name .link { font-size: 2.2rem; }
   .boards__item-col--latest .avatar-wrapper { margin-right: 20px; position: relative; .flex-display(); .flex-shrink(0); }
-  .boards__item-col--latest .avatar-wrapper::after { content: ''; width: 100%; height: 100%; border-radius: 50%; position: absolute; top: 0; left: 0; -webkit-box-shadow: inset 0 0 1px 1px rgba(0,0,0,0.1); box-shadow: inset 0 0 1px 1px rgba(0,0,0,0.1); }
-
-  .dark .boards__item-col--latest .avatar-wrapper::after { -webkit-box-shadow: inset 0 0 1px 1px rgba(255,255,255,0.4); box-shadow: inset 0 0 1px 1px rgba(255,255,255,0.4); }
 }
 
 @media only screen and (min-width: @screen_lg) {
@@ -1713,7 +1710,7 @@ table.list .last-edited { color: @timestamp_color; }
 .threads table.list { table-layout: auto; }
 .threads table.list > thead { display: none; }
 .threads table.list > tbody > tr:not(.spacer) > td:not(.checkbox) { padding: 10px; line-height: 1.6; }
-.threads table.list > tbody > tr > td.main > .thread-link { width: 0; min-width: 100%; }
+.threads table.list > tbody > tr > td.main > a.thread-link { width: 0; min-width: 100%; }
 .threads table.list > tbody > tr > td.created-by,
 .threads table.list > thead > tr > th.created-by,
 .threads table.list > tbody > tr > td.replies,
@@ -1726,10 +1723,9 @@ table.list .last-edited { color: @timestamp_color; }
 .threads .main { width: auto; border-right-width: 1px; padding-left: 17px !important; padding-right: 17px !important; text-align: left; }
 .threads .main .link { width: 0; min-width: 100%; .flex-display(); .align-items(flex-start); }
 .threads .main .link-overflow { min-width: 0; .flex-grow(1); .flex-shrink(1); .flex-basis(0); }
-.threads .main .thread-link { font-weight: bold; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; display: block; }
+.threads .main a.thread-link { font-weight: bold; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; display: block; }
 .threads .replies-views { width: 12%; min-width: 90px; text-align: right; display: none; }
 .threads .avatar { width: 70px; text-align: center; display: none; }
-.threads .avatar .avatar-wrapper::after { content: ''; width: 100%; height: 100%; border-radius: 50%; position: absolute; top: 0; left: 0; -webkit-box-shadow: inset 0 0 1px 1px rgba(0,0,0,0.1); box-shadow: inset 0 0 1px 1px rgba(0,0,0,0.1); }
 .threads .latest { width: 20%; min-width: 200px; padding-right: 17px !important; display: none; }
 
 .threads .announcement td.icon { background-color: @electric_blue; }
@@ -1744,7 +1740,6 @@ table.list .last-edited { color: @timestamp_color; }
 .dark .threads .new td.icon { background-color: @electric_blue; }
 .dark .threads .announcement .icon { background-color: @electric_blue; }
 .dark .threads .sticky:not(.announcement) .icon { background-color: @gray_1; }
-.dark .threads .avatar .avatar-wrapper::after { -webkit-box-shadow: inset 0 0 1px 1px rgba(255,255,255,0.4); box-shadow: inset 0 0 1px 1px rgba(255,255,255,0.4); }
 
 @media only screen and (min-width: 584px) {
   .threads .main { border-right-width: 0; padding-right: 10px !important; }
@@ -1789,7 +1784,7 @@ table.list .last-edited { color: @timestamp_color; }
 .posts .item .left-panel { background-color: @gray_3; width: 100%; border: 1px solid @container_inner_border_color; border-width: 0 0 1px 0; display: block; }
 .posts .item .content { padding: 0 15px; display: block; }
 .posts .item .content-head { margin-bottom: 11px; border-bottom: 1px solid @container_inner_border_color; padding-top: 8px; padding-bottom: 10px; }
-.posts .item .content-head .info .thread-link { width: 0; min-width: 100%; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; display: none; }
+.posts .item .content-head .info a.thread-link { width: 0; min-width: 100%; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; display: none; }
 .posts .item .content-head .info .date,
 .posts .item .content-head .info .author,
 .posts .item .content-head .info .post-method { font-style: italic; font-size: 1.2rem; color: @gray_1; }
@@ -1804,7 +1799,7 @@ table.list .last-edited { color: @timestamp_color; }
 .posts .item .message table td { padding: 3px; }
 .posts .item .message ul { margin-left: 31px; list-style-type: disc; }
 .posts .item .message ol { margin-left: 31px; list-style-type: decimal; }
-.posts .item .message code { background-color: @blue_2; max-height: 175px; padding: 12px 15px; font: 1.1rem "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace; line-height: 1.6; color: @gray_2; white-space: pre-wrap; overflow-y: auto; overflow-x: hidden; display: block; }
+.posts .item .message code { background-color: @blue_2; max-height: 175px; margin-bottom: 10px; padding: 12px 15px; font: 1.1rem "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace; line-height: 1.6; color: @gray_2; white-space: pre-wrap; overflow-y: auto; overflow-x: hidden; display: block; }
 .posts .item .message code::-webkit-scrollbar { width: 39px; }
 .posts .item .message code::-webkit-scrollbar-track { background-color: @blue_2; }
 .posts .item .message code::-webkit-scrollbar-thumb { background-color: @electric_blue; border: 18px solid @blue_2; }
@@ -1814,7 +1809,7 @@ table.list .last-edited { color: @timestamp_color; }
 .posts .item.blocked .unblocked { display: none; }
 .posts .item.blocked .content { padding: 15px !important; }
 .posts .item.blocked .message { margin-bottom: 8px; }
-.posts .item.recent .content-head .info .thread-link { display: block; }
+.posts .item.recent .content-head .info a.thread-link { display: block; }
 .posts.summary .item .content { padding: 0 15px !important; }
 .posts.summary .item .content-head { padding-top: 12px; }
 .posts.summary .item .message { font-size: 1.3rem; }
@@ -1851,7 +1846,7 @@ table.list .last-edited { color: @timestamp_color; }
   .posts .item .content { padding-left: 30px; padding-right: 30px; vertical-align: top; display: table-cell; }
   .posts .item .content-head { margin-bottom: 24px; padding-top: 13px; padding-bottom: 13px; }
   .posts .item .message { margin-bottom: 24px; font-size: 1.5rem; line-height: 1.5; }
-  .posts .item .message code { margin: 6px 0 0; padding: 14px 20px; }
+  .posts .item .message code { padding: 14px 20px; }
   .posts .item .foot { padding-left: 30px; padding-right: 30px; }
   .posts .item .foot .edited_by { margin-bottom: 13px; font-style: italic; font-size: 1.2rem; text-align: right; color: @gray_1; display: block; }
   .posts .item .foot .signature { border-top: 1px solid @container_inner_border_color; padding-top: 24px; padding-bottom: 24px; font-size: 1.2rem; text-align: left; display: block; }
@@ -1931,21 +1926,21 @@ span.pd-post-reactions-dialog-item .fa-laugh {
 /* Quotes
  * ====================================================== */
 
-.quote { background-color: @gray_3; margin: 4px 0 0; border-left: 7px solid @gray_2; color: @gray_1; padding: 18px 18px 15px; font-size: 1.3rem; line-height: 1.6; }
+.quote { background-color: @gray_3; margin: 4px 0 10px; border: 1px solid @gray_2; border-left-width: 7px; color: @gray_1; padding: 18px 18px 15px; font-size: 1.3rem; line-height: 1.6; }
+
+.dark .quote { background-color: @blue_2; border-color: @blue_4; }
 
 .quote_clear { clear: both; }
 
 .quote div.quote_avatar_container { float: left; }
 .quote div.no_avatar_placeholder { width: 30px; height: 30px; display: inline-block; position: absolute; top: 14px; left: 4px; }
-.quote div.quote_header { margin: 0 0 12px 40px; font-style: italic; font-size: 1.2rem; line-height: 1.2; display: block; }
+.quote div.quote_header { margin: 0 0 16px 40px; font-style: italic; font-size: 1.2rem; line-height: 1.2; display: block; }
 .quote.no_header { padding-top: 10px; }
 
-.dark .quote { background-color: @blue_2; border-color: @blue_4; }
-
 @media only screen and (min-width: @screen_md) {
-  .quote { margin-top: 6px; padding: 24px; }
+  .quote { padding: 24px; }
 
-  .quote div.quote_header { margin-bottom: 16px; padding-top: 5px; line-height: 1.6; }
+  .quote div.quote_header { padding-top: 5px; line-height: 1.6; }
 }
 
 
@@ -1991,11 +1986,10 @@ span.pd-post-reactions-dialog-item .fa-laugh {
 .conversations .main { width: auto; border-right-width: 1px; padding-left: 17px !important; padding-right: 17px !important; }
 .conversations .main .link { width: 0; min-width: 100%; .flex-display(); .align-items(flex-start); }
 .conversations .main .link-overflow { min-width: 0; .flex-grow(1); .flex-shrink(1); .flex-basis(0); }
-.conversations .main .thread-link { font-weight: bold; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; display: block; }
+.conversations .main a.thread-link { font-weight: bold; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; display: block; }
 .conversations .replies { width: 12%; min-width: 90px; text-align: right; display: none; }
 .conversations .replies a { color: inherit; }
 .conversations .avatar { width: 70px; text-align: center; display: none; }
-.conversations .avatar .avatar-wrapper::after { content: ''; width: 100%; height: 100%; border-radius: 50%; position: absolute; top: 0; left: 0; -webkit-box-shadow: inset 0 0 1px 1px rgba(0,0,0,0.1); box-shadow: inset 0 0 1px 1px rgba(0,0,0,0.1); }
 .conversations .latest { width: 20%; min-width: 200px; padding-right: 17px !important; display: none; }
 
 .conversations .new td.icon { background-color: @electric_blue; }
@@ -2005,7 +1999,6 @@ span.pd-post-reactions-dialog-item .fa-laugh {
 
 .dark .conversations td.icon { background-color: @blue_4; }
 .dark .conversations .new td.icon { background-color: @electric_blue; }
-.dark .conversations .avatar .avatar-wrapper::after { -webkit-box-shadow: inset 0 0 1px 1px rgba(255,255,255,0.4); box-shadow: inset 0 0 1px 1px rgba(255,255,255,0.4); }
 
 @media only screen and (min-width: 584px) {
   .conversations .main { border-right-width: 0; padding-right: 10px !important; }
@@ -2063,7 +2056,7 @@ span.pd-post-reactions-dialog-item .fa-laugh {
 .messages .item .message table td { padding: 3px; }
 .messages .item .message ul { margin-left: 31px; list-style-type: disc; }
 .messages .item .message ol { margin-left: 31px; list-style-type: decimal; }
-.messages .item .message code { background-color: @blue_2; max-height: 175px; padding: 12px 15px; font: 1.1rem "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace; line-height: 1.6; color: @gray_2; white-space: pre-wrap; overflow-y: auto; overflow-x: hidden; display: block; }
+.messages .item .message code { background-color: @blue_2; max-height: 175px; margin-bottom: 10px; padding: 12px 15px; font: 1.1rem "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace; line-height: 1.6; color: @gray_2; white-space: pre-wrap; overflow-y: auto; overflow-x: hidden; display: block; }
 .messages .item .message code::-webkit-scrollbar { width: 39px; }
 .messages .item .message code::-webkit-scrollbar-track { background-color: @blue_2; }
 .messages .item .message code::-webkit-scrollbar-thumb { background-color: @electric_blue; border: 18px solid @blue_2; }
@@ -2107,7 +2100,7 @@ span.pd-post-reactions-dialog-item .fa-laugh {
   .messages .item .content { padding-left: 30px; padding-right: 30px; vertical-align: top; display: table-cell; }
   .messages .item .content-head { margin-bottom: 24px; padding-top: 13px; padding-bottom: 13px; }
   .messages .item .message { margin-bottom: 24px; font-size: 1.5rem; line-height: 1.5; }
-  .messages .item .message code { margin: 6px 0 0; padding: 14px 20px; }
+  .messages .item .message code { padding: 14px 20px; }
   .messages .item .foot { padding-left: 30px; padding-right: 30px; }
   .messages .item .foot .signature { border-top: 1px solid @container_inner_border_color; padding-top: 24px; padding-bottom: 24px; font-size: 1.2rem; text-align: left; display: block; }
   .messages.summary .item .content { padding-left: 30px !important; padding-right: 30px !important; }
@@ -2280,30 +2273,6 @@ span.pd-post-reactions-dialog-item .fa-laugh {
  * User Profile
  * ====================================================== */
 
-@-webkit-keyframes flash {
-  0% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.2;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes flash {
-  0% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.2;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
 .show-user .content-box { background: none; border-width: 0; margin: 0 15px 15px; overflow: hidden; }
 .show-user .content-box--groups { overflow-x: auto; }
 
@@ -2330,15 +2299,16 @@ span.pd-post-reactions-dialog-item .fa-laugh {
 
 .show-user__user { padding: 15px; .flex-display(); .flex-direction(column); .flex-wrap(wrap); .align-items(center); }
 .show-user__user-avatar { background-color: @gray_4; width: 112px; height: 112px; margin-top: -96px; border: 1px solid @gray_2; border-radius: 50%; padding: 5px; position: relative; .flex-grow(0); .flex-shrink(0); .flex-basis(100px); }
+.show-user__user-avatar span.online { background-color: #19cf86; width: 25px; height: 25px; border: 4px solid @gray_4; border-radius: 50%; display: block; position: absolute; bottom: 5px; right: 5px; }
 .show-user__user-fields { padding-top: 12px; .flex-display(); .flex-direction(column); .align-items(center); }
 .show-user__user-fields span.username { margin-bottom: 6px; font: 500 1.8rem @titillium_upright; line-height: 1.2; letter-spacing: 0.025em; display: block; }
-.show-user__user-fields span.online { background-color: #19cf86; width: 8px; height: 8px; border-radius: 50%; display: inline-block; position: relative; top: -1px; left: 5px; -webkit-animation: flash linear 3s infinite; animation: flash linear 3s infinite; }
 .show-user__user-fields span.user-group { font-size: 1.4rem; letter-spacing: 0.05em; display: block; }
 .show-user__user-fields span.user-stars { margin-top: 4px; display: block; }
 .show-user__user-options { display: none; }
 
 .dark .show-user__cover-image { background-color: @blue_4; -webkit-box-shadow: inset 0 -1px 0 0 @blue_4; box-shadow: inset 0 -1px 0 0 @blue_4; }
 .dark .show-user__user-avatar { background-color: @blue_3; border-color: @blue_4; }
+.dark .show-user__user-avatar span.online { border-color: @blue_3; }
 
 @media only screen and (max-width: @screen_md_max) {
   .show-user table.list td.main,
@@ -2372,6 +2342,7 @@ span.pd-post-reactions-dialog-item .fa-laugh {
 
   .show-user__user { padding: 30px; .flex-direction(row); .align-items(flex-start); }
   .show-user__user-avatar { width: 162px; height: 162px; margin-top: -82px; .flex-basis(150px); }
+  .show-user__user-avatar span.online { bottom: 12px; right: 12px; }
   .show-user__user-fields { padding: 0 30px; .align-items(flex-start); .flex-grow(1); .flex-basis(0); }
   .show-user__user-fields span.username { margin-top: -8px; font-size: 2rem; }
   .show-user__user-options { .flex-display(); .flex-wrap(wrap); .flex-direction(row-reverse); }
@@ -2533,7 +2504,7 @@ span.pd-post-reactions-dialog-item .fa-laugh {
 .edit-user #avatar-options { .flex-display(); .flex-direction(column); .flex-wrap(wrap); }
 .edit-user #avatar-options .content-box { width: 100%; border-width: 1px; padding: 12px 15px 15px; text-align: center; position: relative; }
 .edit-user #avatar-options .content-box.options { text-align: left; }
-.edit-user #avatar-options .avatar-wrapper { margin: 0 auto; display: block; }
+.edit-user #avatar-options .avatar-wrapper { margin: 0 auto; display: block; position: relative; }
 
 .notification-block-wrapper { margin: 0; padding: 15px 15px 0; }
 .notification-block-wrapper > .title-bar { min-height: 40px; padding-left: 20px; padding-right: 20px; -webkit-box-shadow: none; box-shadow: none; }
@@ -2615,14 +2586,12 @@ span.pd-post-reactions-dialog-item .fa-laugh {
 
 .micro-profile { background: @container_background_color_1; width: 200px; height: 50px; margin-top: 10px; margin-left: 10px; border: 1px solid @gray_2; padding: 10px; color: @container_text_color_1; overflow: hidden; position: relative; .box-sizing(content-box); }
 
+.dark .micro-profile { background-color: @blue_3; border-color: @blue_4; color: @gray_2; }
+
 .micro-profile .avatar { width: 50px; height: 50px; display: block; position: absolute; top: 10px; }
-.micro-profile .avatar-wrapper::after { content: ''; width: 100%; height: 100%; border-radius: 50%; position: absolute; top: 0; left: 0; -webkit-box-shadow: inset 0 0 1px 1px rgba(0,0,0,0.1); box-shadow: inset 0 0 1px 1px rgba(0,0,0,0.1); }
 
 .micro-profile .info { width: 135px; text-align: left; overflow: hidden; position: absolute; top: 7px; left: 75px; }
 .micro-profile .info input { width: 130px; margin-top: 0; }
-
-.dark .micro-profile { background-color: @blue_3; border-color: @blue_4; color: @gray_2; }
-.dark .micro-profile .avatar-wrapper::after { -webkit-box-shadow: inset 0 0 1px 1px rgba(255,255,255,0.4); box-shadow: inset 0 0 1px 1px rgba(255,255,255,0.4); }
 
 .user-search-box { margin-top: 5px; margin-left: 0; }
 
@@ -2656,8 +2625,8 @@ span.pd-post-reactions-dialog-item .fa-laugh {
 .mini-profile { padding: 15px; color: @blue_3; overflow: hidden; }
 .mini-profile span { display: block; }
 
-.mini-profile__avatar { width: 60px; height: 60px; margin-right: 15px; border-radius: 50%; overflow: hidden; float: left; }
-.mini-profile__avatar .avatar-wrapper::after { content: ''; width: 100%; height: 100%; border-radius: 50%; position: absolute; top: 0; left: 0; -webkit-box-shadow: inset 0 0 1px 2px rgba(0,0,0,0.1); box-shadow: inset 0 0 1px 2px rgba(0,0,0,0.1); }
+.mini-profile__avatar { width: 60px; height: 60px; margin-right: 15px; border-radius: 50%; float: left; position: relative; }
+.mini-profile__avatar span.online { background-color: #19cf86; width: 18px; height: 18px; border: 3px solid @gray_3; border-radius: 50%; display: block; position: absolute; bottom: -1px; right: -1px; }
 .mini-profile__name { margin-bottom: 2px; font: 500 1.6rem @titillium_upright; line-height: 1.2; letter-spacing: 0.025em; }
 .mini-profile__group { font-size: 1.3rem; letter-spacing: 0.05em; }
 .mini-profile__group + .mini-profile__group { margin-top: 4px; }
@@ -2665,7 +2634,7 @@ span.pd-post-reactions-dialog-item .fa-laugh {
 .mini-profile__stars > img { padding: 0 1px; }
 
 .dark .mini-profile { color: @gray_2; }
-.dark .mini-profile__avatar .avatar-wrapper::after { -webkit-box-shadow: inset 0 0 1px 1px rgba(255,255,255,0.4); box-shadow: inset 0 0 1px 1px rgba(255,255,255,0.4); }
+.dark .mini-profile__avatar span.online { border-color: @blue_2; }
 
 @media only screen and (max-width: @screen_md_max) {
   .mini-profile::before,
@@ -2689,6 +2658,7 @@ span.pd-post-reactions-dialog-item .fa-laugh {
   .mini-profile { height: 100%; padding: 40px; text-align: center; }
 
   .mini-profile__avatar { width: 150px; height: 150px; margin: 0 auto; float: none; }
+  .mini-profile__avatar span.online { width: 25px; height: 25px; border-width: 4px; bottom: 7px; right: 7px; }
   .mini-profile__name { margin-top: 14px; margin-bottom: 8px; font-size: 2rem; }
   .mini-profile__group { font-size: 1.4rem; }
 }
@@ -2703,9 +2673,12 @@ span.pd-post-reactions-dialog-item .fa-laugh {
 #avatar-preview .hide { display: none; }
 
 .avatar-wrapper { border-radius: 50%; text-align: center; overflow: hidden; position: relative; .flex-display(); .flex-shrink(0); .align-items(center); .justify-content(center); }
+.avatar-wrapper::after { content: ''; width: 100%; height: 100%; border-radius: 50%; position: absolute; top: 0; left: 0; -webkit-box-shadow: inset 0 0 1px 2px rgba(0,0,0,0.1); box-shadow: inset 0 0 1px 2px rgba(0,0,0,0.1); }
 .avatar-wrapper * { vertical-align: middle; }
 .avatar-wrapper > div > img { position: absolute; top: 0; left: 0; }
 .avatar-wrapper > div > div { vertical-align: middle; display: table-cell; }
+
+.dark .avatar-wrapper::after { -webkit-box-shadow: inset 0 0 1px 1px rgba(255,255,255,0.4); box-shadow: inset 0 0 1px 1px rgba(255,255,255,0.4); }
 
 .avatar-wrapper > div,
 #avatar-preview.flash_present.image_present > div { position: relative; }
@@ -2719,7 +2692,7 @@ span.pd-post-reactions-dialog-item .fa-laugh {
 .avatar_size_default > div,
 .avatar-wrapper.avatar_size_default > div > div { width: 150px; height: 150px; }
 .avatar_size_default img,
-.avatar_size_default default { max-width: 150px; max-height: 150px; }
+.avatar_size_default default { width: 100%; max-width: 150px; height: auto; }
 
 .avatar_size_medium,
 .avatar_size_medium embed,
@@ -2727,7 +2700,7 @@ span.pd-post-reactions-dialog-item .fa-laugh {
 .avatar_size_medium > div,
 .avatar-wrapper.avatar_size_medium > div > div { width: 75px; height: 75px; }
 .avatar_size_medium img,
-.avatar_size_medium default { max-width: 75px; max-height: 75px; }
+.avatar_size_medium default { width: 100%; max-width: 75px; height: auto; }
 
 .avatar_size_small,
 .avatar_size_small embed,
@@ -2735,7 +2708,7 @@ span.pd-post-reactions-dialog-item .fa-laugh {
 .avatar_size_small > div,
 .avatar-wrapper.avatar_size_small > div > div { width: 50px; height: 50px; }
 .avatar_size_small img,
-.avatar_size_small default { max-width: 50px; max-height: 50px; }
+.avatar_size_small default { width: 100%; max-width: 50px; height: auto; }
 
 .avatar_size_quote,
 .avatar_size_quote embed,
@@ -2743,7 +2716,7 @@ span.pd-post-reactions-dialog-item .fa-laugh {
 .avatar_size_quote > div,
 .avatar-wrapper.avatar_size_quote > div > div { width: 30px; height: 30px; }
 .avatar_size_quote img,
-.avatar_size_quote default { max-width: 30px; max-height: 30px; }
+.avatar_size_quote default { width: 100%; max-width: 30px; height: auto; }
 
 
 /* ======================================================
@@ -2769,11 +2742,10 @@ span.pd-post-reactions-dialog-item .fa-laugh {
 .stats__col p { font: 1.3rem @titillium; text-align: left; color: @gray_1; }
 .stats__col p + p { margin-top: 3px; }
 .stats__col abbr.time { font: inherit; color: inherit; }
-.stats__col--threads .thread-link { max-width: 278px; text-overflow: ellipsis; white-space: nowrap; vertical-align: top; overflow: hidden; display: inline-block; }
+.stats__col--threads a.thread-link { max-width: 278px; text-overflow: ellipsis; white-space: nowrap; vertical-align: top; overflow: hidden; display: inline-block; }
 
 .stats__online { margin: 4px -5px -4px; .flex-display(); .flex-wrap(wrap); }
 .stats__online a { width: 40px; height: 40px; margin: 4px 5px; display: block; }
-.stats__online .avatar-wrapper::after { content: ''; width: 100%; height: 100%; border-radius: 50%; position: absolute; top: 0; left: 0; -webkit-box-shadow: inset 0 0 1px 1px rgba(255,255,255, 0.4); box-shadow: inset 0 0 1px 1px rgba(255,255,255,0.4); }
 .stats__online .avatar_size_small,
 .stats__online .avatar_size_small embed,
 .stats__online .avatar_size_small object,
@@ -2783,7 +2755,7 @@ span.pd-post-reactions-dialog-item .fa-laugh {
 .stats__online .avatar_size_small default { max-width: 40px; max-height: 40px; }
 
 @media only screen and (max-width: @screen_xs_max) {
-  .stats__col--threads .thread-link { width: 0; max-width: none; min-width: 100%; display: block; }
+  .stats__col--threads a.thread-link { width: 0; max-width: none; min-width: 100%; display: block; }
   .stats__col--threads abbr.time { display: block; }
 }
 

@@ -1,6 +1,9 @@
 <div class="$[miniprofile_class]">
     {if $[user.avatar]}
-        <div class="mini-profile__avatar">$[user.avatar]</div>
+        <div class="mini-profile__avatar">
+            $[user.avatar]
+            {if $[user.is_online]}<span class="online" title="User is online"></span>{/if}
+        </div>
     {/if}
     <span class="mini-profile__name">$[user]</span>
     {if !$[user.is_guest]}
