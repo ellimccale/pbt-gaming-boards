@@ -122,6 +122,7 @@ var Post_Reactions = function () {
 
 			$controls.each(function () {
 				var post_id = Post_Reactions.fetch_post_id(this);
+				var $button = "";
 
 				if (post_id) {
 					var user_id = yootil.user.id();
@@ -129,14 +130,16 @@ var Post_Reactions = function () {
 					var has_reacted = reaction_data && reaction_data.contains(user_id) ? true : false;
 
 					if (has_reacted) {
-						var $button = $("<a href='#' data-reaction='" + post_id + "' role='button' class='button state-selected' title='Remove Reaction'><i class='fas fa-thumbs-up' aria-hidden='true'></i></a>");
+						$button = $("<a href='#' data-reaction='" + post_id + "' role='button' class='button state-selected' title='Remove Reaction'><i class='fas fa-thumbs-up' aria-hidden='true'></i></a>");
 					} else {
-                        var $button = $("<a href='#' data-reaction='" + post_id + "' role='button' class='button' title='Add Reaction'><i class='far fa-thumbs-up' aria-hidden='true'></i></a>");
-                    }
+						$button = $("<a href='#' data-reaction='" + post_id + "' role='button' class='button' title='Add Reaction'><i class='far fa-thumbs-up' aria-hidden='true'></i></a>");
+					}
 
 					$button.on("click", Post_Reactions.button_handler.bind($button, post_id, user_id));
 
-					$(this).prepend($button);
+					if (yootil.key.write(Post_Reactions.KEY, post_id)) {
+						$(this).prepend($button);
+					}
 				}
 			});
 		}
@@ -207,10 +210,11 @@ var Post_Reactions = function () {
 
 						if ($selected_item.length == 1) {
 							var id = parseInt($selected_item.attr("data-reaction"), 10);
+							var $button = $("a.button[data-reaction='" + post_id + "']");
 
 							reaction_data.add(user_id, id);
-							$("a.button[data-reaction='" + post_id + "']").addClass("state-selected");
-                            $("a.button[data-reaction='" + post_id + "']").find('i').removeClass('far').addClass('fas');
+							$button.addClass("state-selected");
+							$button.find('i').removeClass('far').addClass('fas');
 
 							Post_Reactions.update_post(reaction_data);
 
@@ -246,8 +250,10 @@ var Post_Reactions = function () {
 		value: function remove(reaction_data, post_id, user_id) {
 			reaction_data.remove(user_id);
 			this.update_post(reaction_data);
-			$("a.button[data-reaction='" + post_id + "']").removeClass('state-selected');
-            $("a.button[data-reaction='" + post_id + "']").find('i').removeClass('fas').addClass('far');
+			var $button = $("a.button[data-reaction='" + post_id + "']");
+
+			$button.removeClass('state-selected');
+			$button.find('i').removeClass('fas').addClass('far');
 		}
 	}, {
 		key: "possible_reactions",
@@ -267,17 +273,17 @@ var Post_Reactions = function () {
 					continue;
 				}
 
-                var title = "";
+				var title = "";
 
-                if (this.settings.show_titles == 1) {
-                    title = "<span class='pd-post-reactions-item-title'>" + item.title;
-                    title += "</span>";
-                }
+				if (this.settings.show_titles == 1) {
+					title = "<span class='pd-post-reactions-item-title'>" + item.title;
+					title += "</span>";
+				}
 
 				html += "<div class='pd-post-reactions-cell'>";
 				html += "<span class='pd-post-reactions-dialog-item' data-reaction='" + item.unique_id + "'>";
 				html += "<i class='" + item.icon_class + "' style='font-size: " + item.icon_size + "; color: #" + item.icon_color + ";' title='" + item.title + "'></i>";
-                html += title;
+				html += title;
 				html += "</span>";
 				html += "</div>";
 
@@ -313,8 +319,8 @@ var Post_Reactions = function () {
 				var data = reaction_data.data;
 				var post_id = reaction_data.post_id;
 				var $post_row = $("tr.item.post#post-" + post_id);
-                var $foot = $post_row.find("td.foot");
-				var $reactions_div = $post_row.find("div.pd-post-reactions-container");
+				var $foot = $post_row.find("td.foot");
+				var $reactions_div = $foot.find("div.pd-post-reactions-container");
 
 				if (data.constructor == Array && data.length > 0) {
 					if (!$reactions_div.length) {
@@ -408,7 +414,7 @@ var Post_Reaction_Data = function () {
 
 			if (data.constructor == Array && data.length) {
 				for (var i = 0, l = data.length; i < l; i++) {
-					//			for(let value of data){
+					//for(let value of data){
 					if (yootil.is_json(data[i])) {
 						parsed.push(JSON.parse(data[i]));
 					}
