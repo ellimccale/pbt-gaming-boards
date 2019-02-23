@@ -1,3 +1,6 @@
+### 2.1.1
+- Fixed avatar images being stretched at mobile views and in the Info Center
+
 ### 2.1.0
 - Added inner box-shadow to all avatar wrappers, for consistency
 - Added online status to mini profile, and updated styles on user profiles to match
