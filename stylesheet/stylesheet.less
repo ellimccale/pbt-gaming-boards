@@ -567,6 +567,7 @@ select { background: none; background-color: @gray_4; max-width: 100%; height: 3
 .ui-filterlist > .filters { margin: 5px -5px -5px; padding: 0; }
 .ui-filterlist > .filters > li { margin: 5px; padding: 7px; }
 
+.dark .ui-search .search-filters-button { border-color: mix(@blue_4, @gray_1, 25%); }
 .dark .ui-filterlist > .list > table > tbody > tr:nth-child(2n) { background-color: @blue_2; }
 
 
@@ -1148,9 +1149,9 @@ input.ui-error { background-color: @container_background_color_1; padding: 2px; 
 .ui-selectMenu-box:hover .arrow { background: none; background-color: #aeddf7; border-left-color: darken(@container_inner_border_color, 20%); }
 
 .dark .container .control-bar  { background-color: @blue_4; border-color: @blue_4; }
-.dark .control-bar .ui-search .search-input { background-color: @blue_3; border-color: @gray_1; }
-.dark .ui-selectMenu-box { background-color: @blue_3; border-color: @gray_1; color: @gray_2; }
-.dark .ui-selectMenu-box .arrow { background-color: @blue_4; border-left-color: @gray_1; }
+.dark .control-bar .ui-search .search-input { background-color: @blue_3; border-color: mix(@blue_4, @gray_1, 25%); }
+.dark .ui-selectMenu-box { background-color: @blue_3; border-color: mix(@blue_3, @gray_1, 25%); color: @gray_2; }
+.dark .ui-selectMenu-box .arrow { background-color: @blue_4; border-left-color: mix(@blue_4, @gray_1, 25%); }
 .dark .ui-selectMenu-box .arrow.down > span { border-top-color: @gray_2; }
 .dark .ui-selectMenu-box.ui-active .arrow,
 .dark .ui-selectMenu-box:hover .arrow { background-color: @blue_3; }
@@ -1249,7 +1250,7 @@ input.ui-error { background-color: @container_background_color_1; padding: 2px; 
 .ui-pagination li.ui-pagination-next > a { padding-left: 12px; padding-right: 12px; }
 
 .dark .ui-pagination li > a,
-.dark .ui-pagination li > div { background-color: @blue_4; border-color: @gray_1; color: @gray_2; }
+.dark .ui-pagination li > div { background-color: @blue_4; border-color: mix(@blue_4, @gray_1, 25%); color: @gray_2; }
 .dark .ui-pagination li > a:hover,
 .dark .ui-pagination li > div:hover { background-color: @blue_3; color: @gray_2; }
 .dark .ui-pagination li.state-selected > a { background-color: @gray_2; color: @blue_3; }
