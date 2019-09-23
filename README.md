@@ -1,4 +1,4 @@
-# GamingBoards
+# GamingBoards 2.2.0
 *GamingBoards* is a deep blue and light gray theme with bright blue accents, built explicity for use on [GamingBoards.net](http://gamingboards.com/) with the free forum software [ProBoards](https://proboards.com/). It features many custom features, such as a togglable sidebar, dark mode, and remodels for all major layout templates. This theme is also completely responsive. Built using my v5 theme base, [*cast*](https://github.com/elli-mccale/pbt-cast).
 
 ## Use

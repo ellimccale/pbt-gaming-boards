@@ -20,7 +20,7 @@
 </div>
   
 <script>
-$(document).ready(function() {
+$(function() {
     // Move post controls to footer on mobile
     (function postControls() {
         function moveControls() {
@@ -29,7 +29,7 @@ $(document).ready(function() {
 
                 var $contentHead = $this.find('.content-head');
                 var $contentFoot = $this.find('.foot');
-                var $controls    = $this.find('.controls');
+                var $controls = $this.find('.controls');
         
                 if (window.innerWidth < 520) {
                     $controls.appendTo($contentFoot);

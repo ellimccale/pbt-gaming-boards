@@ -1,3 +1,8 @@
+### 2.2.0
+- Updated HTML with semantic and accessibility improvements
+- Updated styling to work with new PB ads
+- Updated instances of jQuery `$(document).ready(function() {})` to use shorthand `$(function() {})`
+
 ### 2.1.1
 - Fixed avatar images being stretched at mobile views and in the Info Center
 

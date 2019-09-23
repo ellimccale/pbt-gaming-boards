@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 $[tag.html.open]
     <head>
-        <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+        <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <title>$[title] | $[forum.name]</title>
@@ -12,7 +12,7 @@ $[tag.html.open]
         <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-6jHF7Z3XI3fF4XZixAuSu0gGKrXwoX/w3uFPxC56OtjChio7wtTGJWRW53Nhx6Ev" crossorigin="anonymous">
 
         <script>
-        $(document).ready(function() {
+        $(function() {
             /**
              * jQuery UI Dialog changes
              * Has to be in `<head>` to load in the right order.
@@ -57,7 +57,7 @@ $[tag.html.open]
             </div>
         {/if}
 
-        <header role="banner">
+        <header>
             <div class="header__top-bar">
                 <div class="header__wrapper">
                     {if $[navigation.tree]}
@@ -67,7 +67,7 @@ $[tag.html.open]
                         </div>
                     {/if}
 
-                    <nav class="navigation-menu navigation-menu--secondary" role="navigation" aria-label="Secondary Navigation">
+                    <nav class="navigation-menu navigation-menu--secondary" aria-label="Secondary Navigation">
                         <a href="#content" accesskey="s" class="aria-hidden">Skip Navigation</a>
                         <ul>
                             {if !$[current_user.is_member]}
@@ -201,7 +201,7 @@ $[tag.html.open]
                         </a>
                     </h1>
 
-                    <nav id="js-menu" class="navigation-menu navigation-menu--primary" role="navigation" aria-label="Main Navigation">
+                    <nav id="js-menu" class="navigation-menu navigation-menu--primary" aria-label="Main Navigation">
                         <a href="#content" accesskey="s" class="aria-hidden">Skip Navigation</a>
                         <a href="javascript:void(0);" title="Open Menu" id="js-toggle-menu" class="navigation-menu__mobile-link">
                             <i class="far fa-bars" aria-hidden="true"></i> Navigation
@@ -320,14 +320,14 @@ $[tag.html.open]
         </div>
 
         <div class="sidebar__toggle-buttons">
-            <button id="js-toggle-sidebar" class="sidebar__toggle-button sidebar__toggle-button--discord" title="Toggle Sidebar" role="button">
+            <button id="js-toggle-sidebar" class="sidebar__toggle-button sidebar__toggle-button--discord" title="Toggle Sidebar" type="button">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 116.8 84" aria-hidden="true" focusable="false">
                     <path fill="#fff" d="M102.4 10.5C88-.3 74.3 0 74.3 0l-1.4 1.6c17 5.2 24.9 12.7 24.9 12.7-10.4-5.7-20.6-8.5-30.1-9.6-7.2-.8-14.1-.6-20.2.2-.6 0-1.1.1-1.7.2-3.5.3-12 1.6-22.7 6.3-3.7 1.7-5.9 2.9-5.9 2.9s8.3-7.9 26.3-13.1l-1-1.2S28.8-.3 14.4 10.5c0 0-14.4 26.1-14.4 58.3 0 0 8.4 14.5 30.5 15.2 0 0 3.7-4.5 6.7-8.3-12.7-3.8-17.5-11.8-17.5-11.8s1 .7 2.8 1.7c.1.1.2.2.4.3.3.2.6.3.9.5 2.5 1.4 5 2.5 7.3 3.4 4.1 1.6 9 3.2 14.7 4.3 7.5 1.4 16.3 1.9 25.9.1 4.7-.8 9.5-2.2 14.5-4.3 3.5-1.3 7.4-3.2 11.5-5.9 0 0-5 8.2-18.1 11.9 3 3.8 6.6 8.1 6.6 8.1 22.1-.7 30.6-15.2 30.6-15.2 0-32.2-14.4-58.3-14.4-58.3zm-62.7 49c-5.6 0-10.2-5-10.2-11.1S34 37.3 39.7 37.3c5.7 0 10.3 5 10.2 11.1 0 6.1-4.5 11.1-10.2 11.1zm36.5 0c-5.6 0-10.2-5-10.2-11.1s4.5-11.1 10.2-11.1c5.7 0 10.2 5 10.2 11.1s-4.5 11.1-10.2 11.1z"/>
                 </svg>
                 <span class="aria-hidden">Toggle Sidebar</span>
             </button>
 
-            <button id="js-toggle-night-mode" class="sidebar__toggle-button sidebar__toggle-button--night" title="Toggle Day/Night Mode" role="button">
+            <button id="js-toggle-night-mode" class="sidebar__toggle-button sidebar__toggle-button--night" title="Toggle Day/Night Mode" type="button">
                 <i class="fal fa-eclipse" aria-hidden="true"></i>
                 <span class="aria-hidden">Toggle Day/Night Mode</span>
             </button>
@@ -336,16 +336,16 @@ $[tag.html.open]
         <div id="js-menu-overlay" class="navigation-menu__overlay"></div>
 
         <script>
-        $(document).ready(function(){
-            // Add lang attribute to `html` tag for accessibility
+        $(function() {
+            // Add lang attribute to `<html>` tag for accessibility
             (function addLang() {
                 $('html').prop('lang', 'en-us');
             })();
             
             // Toggleable night mode
             (function nightMode() {
-                var $toggleButton = $('#js-toggle-night-mode'),
-                    $body         = $('body');
+                var $toggleButton = $('#js-toggle-night-mode');
+                var $body = $('body');
 
                 function toggleNightMode() {
                     if (!$body.hasClass('dark')) {
@@ -360,10 +360,13 @@ $[tag.html.open]
                 $toggleButton.on('click', toggleNightMode);
             })();
 
-            // Add containers to ads
+            // Add classes to ad containers
             (function containAds() {
-                $('iframe#ad1').wrap('<div class="ad-banner ad-banner--top"></div>');
-                $('iframe#ad3').parent().attr('class', 'ad-banner ad-banner--bottom');
+                $('iframe#ad-desktop-top').parent().attr('class', 'ad-banner ad-banner--top');
+                $('iframe#ad-desktop-top[height="50"]').parent().addClass('ad-banner--top-50');
+                $('iframe#ad-desktop-top[height="60"]').parent().addClass('ad-banner--top-60');
+                $('iframe#ad-desktop-top[height="90"]').parent().addClass('ad-banner--top-90');
+                $('iframe#ad-desktop-bottom').parent().attr('class', 'ad-banner ad-banner--bottom');
             })();
             
             // Responsive primary navigation menu
@@ -421,7 +424,7 @@ $[tag.html.open]
             // Navigation menu dropdowns
             (function dropdownMenu() {
                 var $dropdownSibling = $('.navigation-menu--secondary > ul > li > a');
-                var $dropdown        = $('.navigation-menu__dropdown');
+                var $dropdown = $('.navigation-menu__dropdown');
 
                 $dropdown.hide().removeClass('fallback');
 
@@ -546,8 +549,8 @@ $[tag.html.open]
             
             // Modifications to the News Slider
             (function modNewsSlider() {
-                var $newsNav       = $('#news .nav');
-				var $newsTitle     = $('#news .nav .title');
+                var $newsNav = $('#news .nav');
+				var $newsTitle = $('#news .nav .title');
 				var $newsItemPanel = $('#news .items');
 				var $newsItemSlide = $('#news .items .itemSlide');
 
@@ -558,7 +561,7 @@ $[tag.html.open]
 
             // Modifications to the Footer
             (function modFooter() {
-                var $footer        = $('.c-footer');
+                var $footer = $('.c-footer');
                 var $footerWrapper = '.c-footer__wrapper';
 
                 $footer.wrapInner('<div class="c-footer__wrapper"></div>');
@@ -583,7 +586,7 @@ $[tag.html.open]
                 $('.board.item.new td.icon img').replaceWith('<i class="fas fa-folder" aria-hidden="true"></i>');
                 $('.board.item td.icon img').replaceWith('<i class="far fa-folder" aria-hidden="true"></i>');
 
-                // Icons that need to be updated on page change
+                // Icons that need to be updated on afterSearch
                 function paginateIcons() {
                     // Post/message interaction icons
                     $('.button:not(.o-npc-button) .status > img').replaceWith('<i class="fas fa-cog" title="Options"></i>');

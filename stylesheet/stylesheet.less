@@ -3,7 +3,7 @@
  * Theme URI:  http://gaming-boards-theme.proboards.com
  * Author:     Elli
  * Author URI: http://ellimccale.com/
- * Version:    2.1.1
+ * Version:    2.2.0
  */
 
 
@@ -1414,13 +1414,19 @@ table.list .last-edited { color: @timestamp_color; }
 .c-footer a:hover { font: 100% @titillium; text-decoration: none; color: @electric_blue; }
 
 @media only screen and (min-width: @screen_xs) {
+  .c-footer { padding-top: 30px; padding-bottom: 30px; }
   .c-footer__wrapper { width: @wrapper_width; margin: 0 auto; }
 }
 
 @media only screen and (max-width: @screen_xs_max) {
   #remove_ads_link,
   #hosted_by_link,
-  .c-footer__link-wrapper { width: @wrapper_width; margin: 0 auto; }
+  .c-footer__link-wrapper { width: @wrapper_width; }
+
+  #remove_ads_link,
+  #hosted_by_link { margin-left: auto; margin-right: auto; }
+
+  .c-footer__link-wrapper { margin: 0 auto; }
 }
 
 @media only screen and (min-width: @screen_sm) {
@@ -1457,25 +1463,32 @@ table.list .last-edited { color: @timestamp_color; }
 /* Ads
  * ====================================================== */
 
-.ad-banner--top { width: 100% !important; max-width: 728px !important; margin: 30px auto !important; }
-.ad-banner--top iframe { margin: 0 auto !important; }
+.ad-banner--top { position: relative !important; }
+.ad-banner--top-50 { height: 110px !important; }
+.ad-banner--top-60 { height: 120px !important; }
+.ad-banner--top-90 { height: 150px !important; }
+.ad-banner--top-250 { height: 310px !important; }
+.ad-banner--top iframe { margin: 30px auto !important; }
 
-.ad-banner--bottom { width: 100% !important; max-width: 640px !important; margin: 0 auto 30px !important; .flex-direction(column) !important; .align-items(center); .justify-content(center) !important; }
-.ad-banner--bottom iframe { margin: 0 auto !important; }
-.ad-banner--bottom iframe#ad3 { margin-top: 30px !important; }
+.ad-banner--bottom { margin: 30px auto !important; }
+.ad-banner--bottom iframe { margin-bottom: 0 !important; }
 
 @media only screen and (min-width: @screen_xs) {
-  .ad-banner--top { margin-bottom: 0 !important; }
-}
-
-@media only screen and (min-width: 668px) {
-  .ad-banner--bottom { .flex-direction(row) !important; }
-  .ad-banner--bottom iframe#ad3 { margin-top: 0 !important; margin-left: 30px !important; }
+  .ad-banner--top-50 { height: 80px !important; }
+  .ad-banner--top-60 { height: 90px !important; }
+  .ad-banner--top-90 { height: 120px !important; }
+  .ad-banner--top-250 { height: 280px !important; }
+  .ad-banner--top iframe { margin-bottom: 0 !important; }
 }
 
 @media only screen and (min-width: @screen_sm) {
-  .ad-banner--top { margin-top: 50px !important; }
-  .ad-banner--bottom { width: 90% !important; margin-bottom: 50px !important; }
+  .ad-banner--top-50 { height: 100px !important; }
+  .ad-banner--top-60 { height: 110px !important; }
+  .ad-banner--top-90 { height: 140px !important; }
+  .ad-banner--top-250 { height: 300px !important; }
+  .ad-banner--top iframe { margin-top: 50px !important; }
+
+  .ad-banner--bottom { margin: 50px auto !important; }
 }
 
 

@@ -39,7 +39,7 @@
                 </p>
             </div>
             <div class="boards__item-col boards__item-col--latest">
-                <span data-item="latest" data-value="$[board.last_thread.last_post.id]">$[board.last_thread.last_post.created_by.avatar_small]</span>
+                <div data-item="latest" data-value="$[board.last_thread.last_post.id]">$[board.last_thread.last_post.created_by.avatar_small]</div>
                 <p>
                     {if $[board.posts] > 0}
                         {if $[board.last_thread]}
