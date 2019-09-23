@@ -203,7 +203,7 @@ $[tag.html.open]
 
                     <nav id="js-menu" class="navigation-menu navigation-menu--primary" aria-label="Main Navigation">
                         <a href="#content" accesskey="s" class="aria-hidden">Skip Navigation</a>
-                        <a href="javascript:void(0);" title="Open Menu" id="js-toggle-menu" class="navigation-menu__mobile-link">
+                        <a href="javascript:void(0);" title="Open Menu" id="js-toggle-menu" class="navigation-menu__mobile-menu-toggle">
                             <i class="far fa-bars" aria-hidden="true"></i> Navigation
                         </a>
                         <ul>
@@ -240,6 +240,20 @@ $[tag.html.open]
                                     <li>
                                         <a href="$[navigation.menu.href]" target="_parent"{if $[navigation.menu.active]} class="state-active"{/if}>
                                             <i class="far fa-gamepad" aria-hidden="true"></i> Old-School Zone
+                                        </a>
+                                    </li>
+                                {/if}
+                                {if $[navigation.menu.name] == "Coffee Time"}
+                                    <li class="mobile-show">
+                                        <a href="$[navigation.menu.href]" target="_parent"{if $[navigation.menu.active]} class="state-active"{/if}>
+                                            <i class="far fa-coffee" aria-hidden="true"></i> Coffee Time
+                                        </a>
+                                    </li>
+                                {/if}
+                                {if $[navigation.menu.name] == "Help Desk"}
+                                    <li class="mobile-show">
+                                        <a href="$[navigation.menu.href]" target="_parent"{if $[navigation.menu.active]} class="state-active"{/if}>
+                                            <i class="far fa-info-circle" aria-hidden="true"></i> Help Desk
                                         </a>
                                     </li>
                                 {/if}
