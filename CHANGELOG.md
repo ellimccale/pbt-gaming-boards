@@ -2,6 +2,12 @@
 - Updated HTML with semantic and accessibility improvements
 - Updated styling to work with new PB ads
 - Updated instances of jQuery `$(document).ready(function() {})` to use shorthand `$(function() {})`
+- Added border to avatar images in the light theme, to be consistent with the dark theme
+- Fixed avatars in "Pick a Forum Avatar" dialog being stretched
+- Increased space between posts/messages
+- Increased top padding on post/message header
+- Increase bottom margin on post/message `.message` class
+- Reduced brightness of borders on post/message buttons, control bar inputs/buttons, and micro pagination
 
 ### 2.1.1
 - Fixed avatar images being stretched at mobile views and in the Info Center
