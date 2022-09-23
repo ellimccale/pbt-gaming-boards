@@ -1,8 +1,10 @@
 # GamingBoards 2.2.0
-*GamingBoards* is a deep blue and light gray theme with bright blue accents, built explicity for use on [GamingBoards.net](http://gamingboards.com/) with the free forum software [ProBoards](https://proboards.com/). It features many custom features, such as a togglable sidebar, dark mode, and remodels for all major layout templates. This theme is also completely responsive. Built using my v5 theme base, [*cast*](https://github.com/elli-mccale/pbt-cast).
+[Preview](https://gaming-boards-theme.proboards.com/)
+
+*GamingBoards* is a deep blue and light gray theme with bright blue accents, built on commission for use with the free forum software [ProBoards](https://proboards.com/). It features many custom features, such as a togglable sidebar, dark mode, and remodels for all major layout templates. This theme is also completely responsive, which is not inherently supported in the current version of ProBoards. Developed using my v5 theme base, [*cast*](https://github.com/elli-mccale/pbt-cast).
 
 ## Use
-This theme is intended for the private use of GamingBoards.net, and may not be used in any other respect without my express written permission.
+This theme is intended for private use and may not be used in any other respect without my express written permission. You are free to view the code, however.
 
 ## Included
 1. Support for a customized version of the [Profile Notifications](https://github.com/PopThosePringles/ProBoards-Profile-Notifications) plugin
